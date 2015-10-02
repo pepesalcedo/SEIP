@@ -1,0 +1,56 @@
+
+    <div class="contentModalWindow">
+       <form name="FormWindow" action="{{ path('claserecursosubmitupdate', {'idrecurso': idRecurso}) }}" method="post" {{ form_enctype(form) }}> 
+           <div id="form">
+           <div class="row" >
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.clase) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.clase, {'attr':{'ng-model':'centro.clase'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.tipo) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.tipo, {'attr':{'ng-model':'centro.tipo'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.descripcion) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.descripcion, {'attr':{'ng-model':'centro.descripcion'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.estado) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.estado, {'attr':{'ng-model':'centro.estado'}}) }}
+                       </div>
+                   </div>
+               </div>              
+            </div>
+
+
+             <div><input type="submit" value="Guardar"></div>
+          {{ form_row(form._token) }}
+        </div>
+       </form>
+       <div class="mensajeError" id="mensajeError"></div>
+
+    </div>
+
+    
+    <script>
+        $(document).ready(function(){
+            fireFormEvents();
+        });
+    </script>
+
+

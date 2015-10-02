@@ -1,0 +1,168 @@
+{# app/Resources/views/gridGenerico.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/ABrown.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/jqwidgets/styles/jqx.base.css') }}" rel="stylesheet" />
+    <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet" />
+
+
+{% endblock %}
+
+
+  {% block header %} 
+   {{ include('menu/mainMenu.html.twig')}}
+{% endblock %}
+
+{% block body %}
+
+    <div class ="tituloGrid">
+        <h4 style="padding:10px">{{titleGrid}}</h4>
+    </div>
+    <div>    
+    {{ grid(grid) }}
+        </div>
+
+{% endblock %}
+
+{% block footer %}  
+<div class="container" ng-app="GridApp" >
+
+    <div class="starter-template" ng-controller="formController" >
+
+      <div>
+        <div id="form-content" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" style="width:90%" role="document">
+    <div class="modal-content">       
+        <div class="headerModalWindow modal-header">
+           <button type="button" style="color:white" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">{{titleWindow}}</h4>
+        </div>
+
+         <div id="detalles_float" class="modal-body">
+            {# en esta capa serán cargados los detalles por ajax #}
+         </div>
+        </div>
+    </div>
+        </div>
+      </div>
+         <div style="float:right; margin-top: 20px">
+         <button  ng-click="NewElement()">Nuevo</button> 
+         </div>
+
+         <div>
+        <jqx-window jqx-settings="jqxWindowSettings2">
+        <div class="headerModalWindow">
+               <b>{{titleWindow}}</b>
+        </div>
+
+         <div id="detalles_float2">
+            {# en esta capa serán cargados los detalles por ajax #}
+         </div>
+        </jqx-window>
+    </div>
+
+         <div id="mensajes">
+             {# en Mensajes devueltos por ajax #}
+         </div>
+
+    </div>
+         
+    </div><!-- /.container -->
+{% endblock %}
+
+
+{% block javascripts %}
+
+    <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    
+
+    <script src="{{ asset('js/angular.min.js') }}"></script>
+    <script src="{{ asset('js/ie-emulation-modes-warning.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/gridfunctions.js') }}"></script>
+    <script src="{{ asset('js/ajaxModalWindow.js') }}"></script>
+    <script src="{{ asset('js/localidades.js') }}"></script>
+    <script src="{{ asset('js/comboboxautocomplete.js') }}"></script>
+
+
+
+    <script src="{{ asset('bundles/jqwidgets/jqxcore.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxdata.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxangular.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxwindow.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxpanel.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/globalization/globalize.js') }}"></script>
+
+    <script>
+        
+   $(function(){
+    
+           ligarEventosGrid();     
+    });
+        
+    </script>
+    
+    <script>
+
+    //Añadimos la aplicacion angular
+var gridApp = angular.module("GridApp", ["jqwidgets"]);
+
+gridApp.controller("formController", function ($scope, $http) {
+            $scope.jqxWindowSettings = {
+                maxHeight: 700, maxWidth: 1200, minHeight: 100, minWidth: 150, height: 'auto', width: '85%',
+                resizable: false, isModal: true, autoOpen: false, modalOpacity: 0.3  
+            };
+            // show button click handler.
+            $scope.showWindow = function () {
+                $scope.jqxWindowSettings.apply('open');
+            };
+            // Ok button click handler.
+            $scope.Ok = function () {
+                $scope.jqxWindowSettings.apply('close');
+
+            };
+            // cancel button click handler.
+            $scope.Cancel = function () {
+                $scope.jqxWindowSettings.apply('close');
+            };
+            
+            $scope.jqxWindowSettings2 = {
+                maxHeight: 500, maxWidth: 1200, minHeight: 30, minWidth: 150, height: '400', width: '60%',
+                resizable: false, isModal: true, autoOpen: false, modalOpacity: 0.3  
+            };
+            // show button click handler.
+            $scope.showWindow = function () {
+                $scope.jqxWindowSettings2.apply('open');
+            };
+            // Ok button click handler.
+            $scope.Ok = function () {
+                $scope.jqxWindowSettings2.apply('close');
+            };
+            // cancel button click handler.
+            $scope.Cancel = function () {
+                $scope.jqxWindowSettings2.apply('close');
+            };
+            
+            
+            // Lo he intentado por angular, pero no hay manera, no llama a la función
+            $scope.NewElement = function () {
+                event.preventDefault(); //cancela el comportamiento por defecto
+                $('#detalles_float').load('{{routeEdit}}');
+                $('#form-content').modal({show:true});
+                //$scope.jqxWindowSettings.apply('open');
+            };
+    
+    });
+    
+
+
+</script>  
+    
+    
+    
+{% endblock %}

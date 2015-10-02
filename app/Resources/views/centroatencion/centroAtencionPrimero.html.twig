@@ -1,0 +1,192 @@
+    <div class="container" ng-app="demoApp">
+
+      <div class="starter-template" ng-controller="demoController">
+        <jqx-window jqx-settings="jqxWindowSettings">
+            <div class="headerModalWindow">
+                <b>Centro de atención</b>
+            </div>
+        
+            <div class="contentModalWindow">
+                {{ form_start(form, {'attr':{'id': 'registerForm', 'ng-submit':'processForm()'}}) }}
+                {{ form_errors(form) }}
+                <div class="row" >
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.tipo) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.tipo) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.numero) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.numero) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.descripcion) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.descripcion) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.calle) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.calle) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.nro) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.nro) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.entrecalles) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.entrecalles) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.piso) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.piso) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.dto) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.dto) }}
+                            </div>
+                        </div>
+                    </div>              
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.provincia) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.provincia) }}
+                            </div>
+                        </div>
+                    </div>              
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.localidad) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.localidad) }}
+                            </div>
+                        </div>
+                    </div>              
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.telefono) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.telefono) }}
+                            </div>
+                        </div>
+                    </div>              
+                    <div class="col-sm-6 col-lg-4 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.estado) }} </label>
+                            <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.estado) }}
+                            </div>
+                        </div>
+                    </div>              
+                 </div>
+                                
+                {{ form_widget(form.save) }}
+                {{ form_end(form) }}
+
+                </div>
+            </div>
+     </jqx-window>
+
+      <jqx-button jqx-on-click="showWindow()">Show Window</jqx-button>
+      </div>
+
+    </div><!-- /.container -->
+    <script type="text/javascript">
+        
+function postForm( $form, callback ){
+ 
+  /*
+   * Get all form values
+   */
+  var values = {};
+  $.each( $form.serializeArray(), function(i, field) {
+    values[field.name] = field.value;
+  });
+ 
+  /*
+   * Throw the form values to the server!
+   */
+  $.ajax({
+    type        : $form.attr( 'method' ),
+    url         : $form.attr( 'action' ),
+    data        : values,
+    success     : function(data) {
+      callback( data );
+    }
+  });
+ 
+}
+ 
+$(document).ready(function(){
+ 
+  var forms = [
+    '[ name="{{ form.vars.full_name }}"]'
+  ];
+ 
+  $( forms.join(',') ).submit( function( e ){
+    e.preventDefault();
+ 
+    postForm( $(this), function( response ){
+    });
+ 
+    return false;
+  });
+ 
+});
+
+    
+$(function(){
+    $("#form_provincia").change(function(){
+    var data = {
+        province_id: $(this).val()
+    };
+ 
+    $.ajax({
+        type: 'post',
+        url: '{{ path("select_cities") }}',
+        data: data,
+        success: function(data) {
+            var $city_selector = $('#form_localidad');
+ 
+            $city_selector.html('<option>Ciudad</option>');
+ 
+            var myArray = jQuery.parseJSON(data);
+            for (var i=0, total = myArray.length; i < total; i++) {
+                $city_selector.append('<option value="' + myArray[i].id + '">' + myArray[i].name + '</option>');
+            }
+        }
+    });
+});  
+});
+</script>
+
+

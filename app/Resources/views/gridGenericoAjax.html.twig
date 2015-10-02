@@ -1,0 +1,22 @@
+
+{% block body %}
+
+    {{ grid(grid, 'APYDataGridBundle::blocks_js.jquery.html.twig') }}
+
+{% endblock %}
+  
+
+{% block javascripts %}
+
+
+    <script>
+        
+   $(function(){
+    
+        //limpiarCaracteres();   
+        ligarEventosGrid();     
+    });
+        
+    </script>
+
+{% endblock %}      

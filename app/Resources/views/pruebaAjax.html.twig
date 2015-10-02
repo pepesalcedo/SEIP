@@ -1,0 +1,63 @@
+{# empty Twig template #}
+{# app/Resources/views/gridGenerico.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/ABrown.css') }}" rel="stylesheet" />
+   <link href="{{ asset('bundles/jqwidgets/styles/jqx.base.css') }}" rel="stylesheet" />
+{% endblock %}
+
+
+  {% block header %} 
+   {{ include('menu/mainMenu.html.twig')}}
+{% endblock %}
+
+{% block body %}
+    <div>
+    <p>Noticias recientes</p>
+    <a id="" href="http://www.w3schools.com">Visit W3Schools.com!</a>
+    <div id="notice_viewer">
+    {# en esta capa serán cargadas las noticias por ajax #}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+
+
+    <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('js/angular.min.js') }}"></script>
+    <script src="{{ asset('js/ie-emulation-modes-warning.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxcore.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxdata.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxbuttons.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxcheckbox.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxinput.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxcalendar.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxradiobutton.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxdatetimeinput.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxnumberinput.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxlistbox.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxdropdownlist.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxscrollbar.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxangular.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxtabs.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxwindow.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/jqxpanel.js') }}"></script>
+    <script src="{{ asset('bundles/jqwidgets/globalization/globalize.js') }}"></script>
+   <script type="text/javascript">
+{# añadirmos una función al evento click de todos los enlaces a.notice_link, para
+usar AJAX en vez de su comportamiento por defecto #}
+    $(document).ready(function(){
+    $('a').click(function(event){
+        event.preventDefault(); //cancela el comportamiento por defecto
+        $('#notice_viewer').load('{{ path('centroatencionsubmitupdate', {'idrecurso': 3}) }}');
+    });
+  
+});
+
+    </script> 
+{% endblock %}

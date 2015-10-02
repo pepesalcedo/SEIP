@@ -1,0 +1,80 @@
+
+    <div class="contentModalWindow">
+       <form name="FormWindow" action="{{ path('motivoeditparams', {'idrecurso': idRecurso}) }}" method="post" {{ form_enctype(form) }}> 
+           <div id="form">
+           <div class="row" >
+               <div class="col-sm-6 col-lg-6 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.name) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.name, {'attr':{'ng-model':'centro.nameº'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-6 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.codigo) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.codigo, {'attr':{'ng-model':'centro.tipoServicio'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-6 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.bomberos) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.bomberos, {'attr':{'ng-model':'centro.tipoServicio'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-6 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.file) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.file, {'attr':{'ng-model':'centro.tipoServicio'}}) }}
+                       </div>
+                   </div>
+               </div>
+
+           </div>
+
+
+             <div><input type="submit" value="Guardar"></div>
+        </div>
+
+             {{ form_row(form._token) }}
+       </form>
+       <div class="mensajeError" id="mensajeError"></div>
+
+    </div>
+
+
+  
+  <script>
+    $(document).ready(function(){
+        //fireFormEvents();
+
+        
+  /* $('form[name="FormWindow"]').on('submit',function(e){        
+        e.preventDefault();
+
+        $.ajax( {
+            url: '{{path('motivoedit') }}',
+            type: 'POST',
+            data: new FormData( this ),
+            processData: false,
+            contentType: false,
+          success     : function(data) {
+            alert('guardado');
+          } 
+          } );
+  } );*/
+  } );
+  
+  
+  
+  </script>
+
+
+
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/xampp/htdocs/SIEP2/src/AppBundle/Controller/InformeDespachosController.php</file>
+            <file>file:/C:/xampp/htdocs/SIEP2/app/Resources/views/servicio/servicio.html.twig</file>
+            <file>file:/C:/xampp/htdocs/SIEP2/vendor/symfony/symfony/src/Symfony/Component/Debug/ErrorHandler.php</file>
+            <file>file:/C:/xampp/htdocs/SIEP2/app/Resources/views/informe/informeEpidemiologico.html.twig</file>
+            <file>file:/C:/xampp/htdocs/SIEP2/vendor/phpoffice/phpexcel/Classes/PHPExcel/Style/Fill.php</file>
+            <file>file:/C:/xampp/htdocs/SIEP2/src/AppBundle/Entity/Servicio.php</file>
+            <file>file:/C:/xampp/htdocs/SIEP2/app/Resources/views/menu/mainMenu.html.twig</file>
+            <file>file:/C:/xampp/htdocs/SIEP2/app/bootstrap.php.cache</file>
+            <file>file:/C:/xampp/htdocs/SIEP2/src/AppBundle/Form/RecursoVehiculoForm.php</file>
+            <file>file:/C:/xampp/htdocs/SIEP2/src/AppBundle/Entity/Diagnostico.php</file>
+        </group>
+    </open-files>
+</project-private>

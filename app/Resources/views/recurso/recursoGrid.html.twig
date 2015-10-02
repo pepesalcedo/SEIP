@@ -1,0 +1,220 @@
+{# app/Resources/views/gridGenerico.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/ABrown.css') }}" rel="stylesheet" />
+    <link href="{{ asset('bundles/jqwidgets/styles/jqx.base.css') }}" rel="stylesheet" />
+    <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet" />
+
+
+{% endblock %}
+
+
+  {% block header %} 
+   {{ include('menu/mainMenu.html.twig')}}
+{% endblock %}
+
+{% block body %}
+
+    <div class ="tituloGrid">
+        <h4 style="padding:10px"> Recursos </h4>
+    </div>
+    <div class="contentModalWindow">
+       <form name="FormWindow" method="post" {{ form_enctype(form) }}> 
+           <div id="form">
+           <div class="row" >
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.tipogruporecurso) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.tipogruporecurso, {'attr':{'ng-model':'centro.tipoGrupoRecurso'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.clasetipo) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.clasetipo, {'attr':{'ng-model':'centro.clasetipo'}}) }}
+                       </div>
+                   </div>
+               </div>
+
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.claserecurso) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.claserecurso, {'attr':{'ng-model':'centro.claseRecurso'}}) }}
+                       </div>
+                   </div>
+               </div>
+           </div>
+            <div id="divGrid">
+            </div>
+
+          {{ form_row(form._token) }}
+        </div>
+       </form>
+       <div class="mensajeError" id="mensajeError"></div>
+
+    </div>
+        
+{% endblock %}
+
+{% block footer %}  
+<div class="container">
+
+    <div class="starter-template">
+
+      <div>
+      <div>
+        <div id="form-content" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" style="width:90%" role="document">
+    <div class="modal-content">       
+        <div class="headerModalWindow modal-header">
+           <button type="button" style="color:white" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Recurso</h4>
+        </div>
+
+         <div id="detalles_float" class="modal-body">
+            {# en esta capa serán cargados los detalles por ajax #}
+         </div>
+        </div>
+    </div>
+        </div>
+      </div>
+         <div style="float:right; margin-top: 20px">
+         <button id="buttonNuevo" style="display:none">Nuevo</button> 
+
+         </div>
+    </div>
+         <div id="mensajes">
+             {# en Mensajes devueltos por ajax #}
+         </div>
+
+    </div>
+         
+    </div><!-- /.container -->
+{% endblock %}
+
+
+{% block javascripts %}
+
+  
+    
+    <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/ajaxModalWindow.js') }}"></script>
+    <script src="{{ asset('js/ie-emulation-modes-warning.js') }}"></script>
+    <script src="{{ asset('js/gridfunctions.js') }}"></script>
+
+
+
+    
+<script type="text/javascript">
+     
+        
+        function getClasesGridRecursos()
+        {
+            var data = {
+                tipogruporecurso_id: $('#recursoGrid_tipogruporecurso').val(),
+                clasetipo: $("input:radio[name='recursoGrid[clasetipo]']:checked").val()
+                //clasetipo: $('#recurso_clasetipo').val()
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("select_claserecurso") }}',
+                data: data,
+                success: function(data) {
+                    var $clase_selector = $('#recursoGrid_claserecurso');
+
+                    $clase_selector.html('<option>Clase</option>');
+
+                    var myArray = jQuery.parseJSON(data);
+                    for (var i=0, total = myArray.length; i < total; i++) {
+                        $clase_selector.append('<option value="' + myArray[i].id + '">' + myArray[i].descripcion + '</option>');
+                    }
+                    
+                }
+            });
+            
+        }
+    
+        function reloadGridRecursos()
+        {
+        
+            var data = {
+                claserecurso_id: $('#recursoGrid_claserecurso').val()
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("recursogridajax") }}',
+                data: data,
+                success: function(data) {
+                    var $grid = $('#divGrid');
+                    $grid.html(data);
+                    //ligarEventosGrid();
+                    $('#buttonNuevo').show();  
+
+                }
+            });
+
+        }
+    
+    
+        $(function(){
+        
+            fireFormEvents();
+        
+            $("#recursoGrid_tipogruporecurso").change(function(){
+                getClasesGridRecursos();
+        });  
+            $("#recursoGrid_clasetipo").change(function(){
+                getClasesGridRecursos();
+        });  
+            $("#recursoGrid_claserecurso").change(function(){
+                reloadGridRecursos();
+             });  
+
+
+            $('#buttonNuevo').click(function() {
+                   event.preventDefault(); //cancela el comportamiento por defecto
+                    var data = {
+                        claserecurso_id: $('#recursoGrid_claserecurso').val()
+                    };
+                    $('#detalles_float').html('Cargando...');
+                    $('#form-content').modal({show:true});
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ path("recursoedit") }}',
+                        data: data,
+                        success: function(data) {
+                            $('#detalles_float').html(data);
+
+                        }
+                    })
+                
+             });        
+
+
+        });
+    
+    
+
+    </script>
+    
+    
+    
+{% endblock %}        
+
+    
+    
+
+
+

@@ -1,0 +1,156 @@
+
+    <div class="contentModalWindow">
+       <form name="FormWindow" action="{{ path('recursopersonasubmitupdate', {'idrecurso': idRecurso}) }}" method="post" {{ form_enctype(form) }}> 
+           <div id="form">
+           <div class="row" >
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.tipogruporecurso) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.tipogruporecurso) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.clasetipo) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.clasetipo) }}
+                       </div>
+                   </div>
+               </div>
+
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.claserecurso) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.claserecurso) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.dni) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.dni, {'attr':{'ng-model':'centro.dni'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.nombre) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.nombre, {'attr':{'ng-model':'centro.Nombre'}}) }}
+                       </div>
+                   </div>
+               </div>              
+                <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.apellido) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.apellido, {'attr':{'ng-model':'centro.apellido'}}) }}
+                       </div>
+                   </div>
+               </div>              
+                       
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.profesion) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.profesion, {'attr':{'ng-model':'centro.profesion'}}) }}
+                       </div>
+                   </div>
+               </div>              
+
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.regimen) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.regimen, {'attr':{'ng-model':'centro.regimen'}}) }}
+                       </div>
+                   </div>
+               </div>              
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.estado) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.estado, {'attr':{'ng-model':'centro.estado'}}) }}
+                       </div>
+                   </div>
+               </div>              
+           
+           </div>
+
+
+             <div><input type="submit" value="Guardar"></div>
+          {{ form_row(form._token) }}
+        </div>
+       </form>
+       <div class="mensajeError" id="mensajeError"></div>
+
+    </div>
+
+    
+    <script src="{{ asset('js/detallesrecursos.js') }}"></script>
+    
+
+    <script type="text/javascript">
+     
+               
+        function getClasesRecursos()
+        {
+            var data = {
+                tipogruporecurso_id: $('#recurso_tipogruporecurso').val(),
+                clasetipo: $("input:radio[name='recurso[clasetipo]']:checked").val()
+                //clasetipo: $('#recurso_clasetipo').val()
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("select_claserecurso") }}',
+                data: data,
+                success: function(data) {
+                    var $clase_selector = $('#recurso_claserecurso');
+
+                    $clase_selector.html('<option>Clase</option>');
+
+                    var myArray = jQuery.parseJSON(data);
+                    for (var i=0, total = myArray.length; i < total; i++) {
+                        $clase_selector.append('<option value="' + myArray[i].id + '">' + myArray[i].descripcion + '</option>');
+                    }
+                }
+            });
+            
+        }
+    
+    
+        $(function(){
+            
+        //fireFormEvents();
+
+       /* $("#recurso_tipogruporecurso").change(function(){
+                getClasesRecursos();
+        });  
+            $("#recurso_clasetipo").change(function(){
+                getClasesRecursos();
+        }); */
+        // PREVENGO QUE CAMBIEN ESTOS DOS COMBOS
+        
+        $("#recurso_tipogruporecurso").click(function(e){
+                e.preventDefault();
+                $(this).blur();
+        });  
+
+        $("#recurso_clasetipo input:radio").click(function(e){
+                e.preventDefault();
+                $(this).blur();
+        });  
+        // 
+        // desactivo todos los radio
+        //$("input:radio").prop( "disabled", true);
+
+    
+    });
+    </script>
+
+

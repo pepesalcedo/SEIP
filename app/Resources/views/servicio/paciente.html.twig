@@ -1,0 +1,302 @@
+
+    <div class="contentModalWindow">
+        <form name="pacienteForm" action="{{ path('serviciopacientesubmitupdate', {'idAdicional': idAdicional, 'idrecurso': idrecurso}) }}" method="post" {{ form_enctype(form) }}> 
+           <div id="form">
+            {{ form_errors(form) }}
+           <div class="row" >
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.nombre) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.nombre) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.apellido) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.apellido) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                    <div id="estado_div2" class="estado00"> </div>
+
+               </div>
+
+                       
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label"> {{ form_label(form.edad) }} </label>
+                       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                           {{ form_widget(form.edad) }}
+                       </div>
+                       <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                           {{ form_widget(form.tipoEdad) }}
+                       </div>
+                       
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.sexo) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.sexo) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+               </div>
+                       
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.dni) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.dni) }}
+                       </div>
+                   </div>
+               </div>
+
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.obraSocial) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.obraSocial) }}
+                       </div>
+                   </div>
+               </div>
+                       
+               <div class="col-sm-6 col-lg-4 formGroup">
+               </div>
+                       
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-lg-5 col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.diagnostico1) }} </label>
+                       <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.diagnostico1) }}
+                       </div>
+                   </div>
+               </div>              
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-lg-5 col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.diagnostico2) }} </label>
+                       <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.diagnostico2) }}
+                       </div>
+                   </div>
+               </div>              
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-lg-5 col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.diagnostico3) }} </label>
+                       <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.diagnostico3) }}
+                       </div>
+                   </div>
+               </div>              
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-lg-5 col-md-6 col-sm-6 col-xs-6º control-label"> {{ form_label(form.diagnostico4) }} </label>
+                       <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.diagnostico4) }}
+                       </div>
+                   </div>
+               </div>              
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-lg-5 col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.diagnostico5) }} </label>
+                       <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.diagnostico5) }}
+                       </div>
+                   </div>
+               </div>              
+               <div class="col-sm-6 col-lg-4 formGroup">
+               </div>
+           </div>
+           <div class="row" >               
+               <div class="col-sm-12 col-lg-12 formGroup">
+                   <h5>Exámen médico:</h5>
+               </div>     
+               <div class="col-sm-4 col-lg-2 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.FR) }} </label>
+                       <div class="col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.FR) }}
+                       </div>
+                   </div>
+               </div>              
+               <div class="col-sm-4 col-lg-2 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.FC) }} </label>
+                       <div class="col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.FC) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-4 col-lg-2 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.TA) }} </label>
+                       <div class="col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.TA) }}
+                       </div>
+                   </div>
+               </div>                        
+               <div class="col-sm-4 col-lg-2 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.pulso) }} </label>
+                       <div class="col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.pulso) }}
+                       </div>
+                   </div>
+               </div>          
+               <div class="col-sm-4 col-lg-2 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.temperatura) }} </label>
+                       <div class="col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.temperatura) }}
+                       </div>
+                   </div>
+               </div>                         
+               <div class="col-sm-4 col-lg-2 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.satO2) }} </label>
+                       <div class="col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.satO2) }}
+                       </div>
+                   </div>
+               </div>                         
+               <div class="col-sm-4 col-lg-2 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.hgt) }} </label>
+                       <div class="col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.hgt) }}
+                       </div>
+                   </div>
+               </div>                         
+               <div class="col-sm-4 col-lg-2 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.glasgow) }} </label>
+                       <div class="col-md-6 col-sm-6 col-xs-6">
+                           {{ form_widget(form.glasgow) }}
+                       </div>
+                   </div>
+               </div>  
+                       
+           <div class="row" >               
+               <div class="col-sm-12 col-lg-12 formGroup">
+                   <h5>Aparato genitourinario:</h5>
+               </div>     
+                       
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.embarazo) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.embarazo) }}
+                       </div>
+                   </div>
+               </div>                         
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.controlado) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.controlado) }}
+                       </div>
+                   </div>
+               </div>                         
+                <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.deriesgo) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.deriesgo) }}
+                       </div>
+                   </div>
+               </div>      
+                <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.semanasgestacion) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.semanasgestacion) }}
+                       </div>
+                   </div>
+               </div>                        
+                <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.trabajoparto) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.trabajoparto) }}
+                       </div>
+                   </div>
+               </div>                        
+
+           </div>
+
+          {{ form_row(form._token) }}
+        </div>
+       </form>
+        <div style="float:right"><input type="button" id="buttonSiguiente" value="Siguiente"></div>
+        <div style="float:right"><input type="button" id="buttonAnterior" value="Anterior"></div>
+        
+        <div class="mensajeError" id="mensajeError"></div>
+    </div>
+
+    
+    <script>
+     
+   $(function(){
+
+        $('#buttonAnterior').on('click', function(e) {
+             e.preventDefault();
+ 
+            postForm( $('form[name="pacienteForm"]'), function( response ){
+                if (response.success)
+                {
+                   if (typeof reloadGridPacientes == 'function') {
+                        reloadGridPacientes(response.id);
+                    }
+                    loadPreviousPaciente(response.id);
+                }
+                else
+                {
+                    //var datos = response.htmlReturned.toString();
+                    //$('#detalles_float').html(datos);
+                    $('#mensajeError').html('Error' + response.cause);
+                }
+
+            });
+        });
+        
+         $('#buttonSiguiente').on('click', function(e) {
+             e.preventDefault();
+ 
+            postForm( $('form[name="pacienteForm"]'), function( response ){
+                if (response.success)
+                {
+                   if (typeof reloadGridPacientes == 'function') {
+                        reloadGridPacientes(response.id);
+                    }
+                    loadNextPaciente(response.id);
+                }
+                else
+                {
+                    //var datos = response.htmlReturned.toString();
+                    //$('#detalles_float').html(datos);
+                    $('#mensajeError').html('Error' + response.cause);
+                }
+
+            });
+        });
+    });
+        
+    </script>
+<script>
+ 
+  $(function() {
+    $( "#serviciopaciente_diagnostico1" ).combobox();
+    $( "#serviciopaciente_diagnostico2" ).combobox();
+    $( "#serviciopaciente_diagnostico3" ).combobox();
+    $( "#serviciopaciente_diagnostico4" ).combobox();
+    $( "#serviciopaciente_diagnostico5" ).combobox();
+
+    });
+  </script>
+

@@ -1,0 +1,203 @@
+
+    <div class="contentModalWindow">
+       <form name="FormWindow" action="{{ path('gruporecursosubmitupdate', {'idrecurso': idRecurso}) }}" method="post" {{ form_enctype(form) }}> 
+           <div id="form">
+           <div class="row" >
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.tipo) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.tipo, {'attr':{'ng-model':'centro.tipo'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.descripcion) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.descripcion, {'attr':{'ng-model':'centro.descripcion'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.estado) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.estado, {'attr':{'ng-model':'centro.estado'}}) }}
+                       </div>
+                   </div>
+               </div>              
+
+               <div class="col-sm-6 col-lg-6 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.fechaInicio) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.fechaInicio, {'attr':{'ng-model':'centro.fechaInicio'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-6 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.fechaFin) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.fechaFin, {'attr':{'ng-model':'centro.fechaFin'}}) }}
+                       </div>
+                   </div>
+               </div>
+
+            </div>
+
+            <div class="row" >
+
+                <div class="col-sm-6 col-lg-6">                       
+                    <div class="col-sm-6 col-lg-6">                       
+                    <h4 style="float:left">Personas</h4>
+                    </div>    
+                    <div class="col-sm-6 col-lg-6">                       
+
+                    <button type="button" style="float:right; margin-top: 10px" id="addpersonas">Añadir personas </button>
+                    </div>    
+
+                    <div id="gridRecursosPersonas">Cargando ...</div>           
+
+                </div>
+                <div class="col-sm-6 col-lg-6">
+                    <div class="col-sm-6 col-lg-6">                       
+                    <h4 style="float:left">Vehículos</h4>
+                    </div>    
+                    <div class="col-sm-6 col-lg-6">                       
+
+                    <button type="button" style="float:right; margin-top: 10px" id="addvehiculos">Añadir vehículos </button>
+                    </div>    
+                    <div id="gridRecursosVehiculos">Cargando ...</div>
+                </div>
+            </div>
+                       
+             <div><input type="submit" style="float:right" value="Guardar"></div>
+          {{ form_row(form._token) }}
+        </div>
+       </form>
+       <div class="mensajeError" id="mensajeError"></div>
+
+    </div>
+
+    
+
+    <script>
+        
+    $(document).ready(function(){
+ 
+        fireFormEvents();
+        
+        $idRecurso = {{idRecurso}};
+        if ($idRecurso > 0)
+        {
+            reloadGridRecursosPersonas($idRecurso);
+            reloadGridRecursosVehiculos($idRecurso);            
+        }
+        else
+        {
+            var $grid = $('#gridRecursosPersonas');
+            $grid.html('No hay personas asignadas');
+
+            $grid = $('#gridRecursosVehiculos');
+            $grid.html('No hay vehículos asignados');
+            
+        }
+        
+        $('#addpersonas').click(function() {
+            addPersonas();
+        });
+ 
+        $('#addvehiculos').click(function() {
+            addVehiculos();
+        });
+
+    });
+
+    
+        function reloadGridRecursosPersonas($idRecurso)
+        {
+            //var scopeAngular = angular.element('[ng-controller=formController]').scope();    
+            //scopeAngular.jqxWindowSettings.apply('close');
+        
+            var data = {
+                gruporecurso_id: $idRecurso
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("gruporecursopersonasgridajax",{'idrecurso': idRecurso}) }}',
+                data: data,
+                success: function(data) {
+                    var $grid = $('#gridRecursosPersonas');
+                    $grid.html(data);
+                }
+            });
+
+        }
+        
+        // Carga la información del grid de vehículos para el grupo seleccionado    
+        function reloadGridRecursosVehiculos($idRecurso)
+        {
+            //var scopeAngular = angular.element('[ng-controller=formController]').scope();    
+            //scopeAngular.jqxWindowSettings.apply('close');
+        
+            var data = {
+                gruporecurso_id: $idRecurso
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("gruporecursovehiculosgridajax",{'idrecurso': idRecurso}) }}',
+                data: data,
+                success: function(data) {
+                    var $grid = $('#gridRecursosVehiculos');
+                    $grid.html(data);
+                }
+            });
+
+        }
+
+
+        function addPersonas()
+        {
+            $.ajax({
+                type: 'post',
+                url: '{{ path("personasgridajax",{'idrecurso': idRecurso}) }}',
+                success: function(data) {
+                    // lo cargo en el la ventana flotante segunda que está en la página padre
+                    var $grid = $('#detalles_float2');
+                    $grid.html(data);
+                    var scopeAngular = angular.element('[ng-controller=formController]').scope();
+                     scopeAngular.jqxWindowSettings2.apply('open');
+
+                }
+            });
+
+        }
+        
+        function addVehiculos()
+        {
+            $.ajax({
+                type: 'post',
+                url: '{{ path("vehiculosgridajax",{'idrecurso': idRecurso}) }}',
+                success: function(data) {
+                    // lo cargo en el la ventana flotante segunda que está en la página padre
+                    var $grid = $('#detalles_float2');
+                    $grid.html(data);
+                    var scopeAngular = angular.element('[ng-controller=formController]').scope();
+                     scopeAngular.jqxWindowSettings2.apply('open');
+
+                }
+            });
+
+        }
+        
+        
+    </script>
+    
+    
+
+
+

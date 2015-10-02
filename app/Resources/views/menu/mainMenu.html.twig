@@ -1,0 +1,80 @@
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-abrown navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="{{ asset('img/logo.png') }}" style="height:50px"/></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Inicio</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Centros<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path('tipocentroatenciongrid')}}">Tipos Centro Atención</a></li>
+                <li><a href="{{ path('centroatenciongrid')}}">Centros atención</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recursos<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path('tipogruporecursogrid')}}">Tipos Grupo Recurso</a></li>
+                <li><a href="{{ path('claserecursogrid')}}">Clases Recurso</a></li>
+                <li><a href="{{ path('recursogrid')}}">Recursos</a></li>
+                <li><a href="{{ path('gruporecursogrid')}}">Grupos Recursos</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Diagnosticos<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path('diagnosticogrid')}}">Diagnosticos</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Servicios<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path('serviciogrid')}}">Servicios</a></li>
+                <li><a href="{{ path('ingresollamadogrid')}}">Ingresos de llamado</a></li>
+                <li><a href="{{ path('motivogrid')}}">Motivos ingreso</a></li>
+                <li><a href="{{ path('destinofinalgrid')}}">Destinos Finales</a></li>
+                <li><a href="{{ path('demoradespachogrid')}}">Demoras Despacho</a></li>
+
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Maestros<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path('estadotablagrid')}}">Estados Tabla</a></li>
+                <li><a href="{{ path('localidadgrid')}}">Localidades</a></li>
+                <li><a href="{{ path('provinciagrid')}}">Provincias</a></li>
+
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Informes<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ path('planillaServicios')}}">Planilla Servicios</a></li>
+                <li><a href="{{ path('informeEpidemiologico')}}">Informe Epidemiológico</a></li>
+                <li><a href="{{ path('informeTraslados')}}">Informe Traslados</a></li>
+                <li><a href="{{ path('informeDespachos')}}">Informe Despachos</a></li>
+
+              </ul>
+            </li>
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+          <div class="barraSeparadora" style="height:5px;background-image: url({{ asset('img/barraSeparadora.png') }}) " ></div>

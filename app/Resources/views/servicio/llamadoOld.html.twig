@@ -1,0 +1,194 @@
+    <div class="container" ng-app="demoApp">
+
+      <div class="starter-template" ng-controller="demoController">
+        <jqx-window jqx-settings="jqxWindowSettings">
+            <div class="headerModalWindow">
+                <b>Ficha de servicios</b>
+            </div>
+        
+            <div class="contentModalWindow">
+                <form>
+
+                <div id='jqxWidget'>
+                <jqx-tabs jqx-width="'100%'" jqx-height="'500px'">
+                    <ul>
+                        <li style="margin-left: 30px;">Llamado</li>
+                        <li>Paciente</li>
+                        <li>Oficio Judicial</li>
+                    </ul>
+                    <div>
+                        <br>
+                        <div class="row" style="margin-right: 30px;" >
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12 formGroup">
+
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">Teléfono:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                <jqx-input name="telefono" ng-model="servicio.telefono"></jqx-input>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12 formGroup">
+                                <div class="form-group">
+                                <label class="col-lg-7 col-md-6 col-sm-6 col-xs-6 control-label">Derivado a Bomberos?</label>
+                                <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6">
+                                <input type="radio" name="bomberos" value="No" ng-model="servicio.bomberos">No
+                                <input type="radio" name="bomberos" value="Si" ng-model="servicio.bomberos">Si
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3  col-xs-12 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">En Cobertura?</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                <input type="radio" name="enCobertura" ng-value="false" ng-model="servicio.cobertura">No
+                                <input type="radio" name="enCobertura" ng-value="true" ng-model="servicio.cobertura">Si                    
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12 formGroup">
+                                <div class="form-group">
+                                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Móvil lógico:</label>            
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                <jqx-drop-down-list jqx-auto-drop-down-height="true" jqx-source="servicio.movilesLogicos" ng-model="servicio.movilLogico"></jqx-drop-down-list>
+                                </div>
+                                </div>
+                            </div>        
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label"> Ingreso del llamado:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <jqx-drop-down-list jqx-auto-drop-down-height="true" jqx-source="servicio.ingresosLlamado" ng-model="servicio.ingresoLlamado"></jqx-drop-down-list>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label"> Ubicación:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <jqx-drop-down-list jqx-auto-drop-down-height="true" jqx-source="servicio.ubicaciones" ng-model="servicio.ubicacion"></jqx-drop-down-list>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label"> Centro de atención:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <jqx-drop-down-list jqx-auto-drop-down-height="true" jqx-source="servicio.centrosAtencion" ng-model="servicio.centroAtencion"></jqx-drop-down-list>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">Calle:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                <jqx-input name="calle" ng-model="servicio.calle"></jqx-input>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">Nro:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                <jqx-input name="nro" ng-model="servicio.nro"></jqx-input>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">Entrecalles/Esquina:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                <jqx-input name="esquina" ng-model="servicio.esquina"></jqx-input>
+                                </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label"> Ingreso del llamado:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <jqx-drop-down-list jqx-auto-drop-down-height="true" jqx-source="servicio.ingresosLlamado" ng-model="servicio.ingresoLlamado"></jqx-drop-down-list>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label"> Ubicación:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <jqx-drop-down-list jqx-auto-drop-down-height="true" jqx-source="servicio.ubicaciones" ng-model="servicio.ubicacion"></jqx-drop-down-list>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label"> Centro de atención:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    <jqx-drop-down-list jqx-auto-drop-down-height="true" jqx-source="servicio.centrosAtencion" ng-model="servicio.centroAtencion"></jqx-drop-down-list>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">Calle:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                <jqx-input name="calle" ng-model="servicio.calle"></jqx-input>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">Nro:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                <jqx-input name="nro" ng-model="servicio.nro"></jqx-input>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">Entrecalles/Esquina:</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                <jqx-input name="esquina" ng-model="servicio.esquina"></jqx-input>
+                                </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div>
+                        ASP.NET is a web application framework developed and marketed by Microsoft to allow
+                        programmers to build dynamic web sites, web applications and web services. It was
+                        first released in January 2002 with version 1.0 of the .NET Framework, and is the
+                        successor to Microsoft's Active Server Pages (ASP) technology. ASP.NET is built
+                        on the Common Language Runtime (CLR), allowing programmers to write ASP.NET code
+                        using any supported .NET language. The ASP.NET SOAP extension framework allows ASP.NET
+                        components to process SOAP messages.
+                    </div>
+                </jqx-tabs>   
+            </div>
+
+                </form>
+            </div>
+     </jqx-window>
+
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      <jqx-button jqx-on-click="showWindow()">Show Window</jqx-button>
+      </div>
+
+    </div><!-- /.container -->
+

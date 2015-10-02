@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_widget(form.save) }}
+{{ form_end(form) }}
+
+ <div class="mensajeError" id="mensajeError"></div>
+
+
+    <script>
+    $(document).ready(function(){
+        fireFormEvents();
+    });
+    </script>

@@ -1,0 +1,125 @@
+
+    <div class="contentModalWindow">
+       <form name="centroatencionForm" action="{{ path('centroatencionsubmitupdate', {'idrecurso': idRecurso}) }}" method="post" {{ form_enctype(form) }}> 
+           <div id="form">
+            {{ form_errors(form) }}
+           <div class="row" >
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.tipo) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.tipo, {'attr':{'ng-model':'centro.tipo'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.nombre) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{form_errors(form.nombre)}}
+                           {{ form_widget(form.nombre, {'attr':{'ng-model':'centro.numero'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.descripcion) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.descripcion, {'attr':{'ng-model':'centro.descripcion'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.calle) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.calle , {'attr':{'ng-model':'centro.calle'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.nro) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.nro, {'attr':{'ng-model':'centro.nro'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.entrecalles) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.entrecalles, {'attr':{'ng-model':'centro.entrecalles'}}) }}
+                       </div>
+                   </div>
+               </div>
+
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.piso) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.piso, {'attr':{'ng-model':'centro.piso'}}) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.dto) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.dto, {'attr':{'ng-model':'centro.dto'}}) }}
+                       </div>
+                   </div>
+               </div>              
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.provincia) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.provincia, {'attr':{'ng-model':'centro.provincia'}}) }}
+                       </div>
+                   </div>
+               </div>              
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.localidad) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.localidad, {'attr':{'ng-model':'centro.localidad'}}) }}
+                       </div>
+                   </div>
+               </div>              
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.telefono) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.telefono, {'attr':{'ng-model':'centro.telefono'}}) }}
+                       </div>
+                   </div>
+               </div>              
+               <div class="col-sm-6 col-lg-4 formGroup">
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.estado) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.estado, {'attr':{'ng-model':'centro.estado'}}) }}
+                       </div>
+                   </div>
+               </div>              
+            </div>
+
+
+             <div><input type="submit" value="Guardar"></div>
+          {{ form_row(form._token) }}
+        </div>
+       </form>
+        <div class="mensajeError" id="mensajeError"></div>
+    </div>
+
+    
+    
+    <script>
+    $(document).ready(function(){
+        
+        preparaComboCities('{{ path("select_cities") }}');
+
+        fireFormEvents();
+    });
+    </script>
+

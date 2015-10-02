@@ -1,0 +1,23 @@
+{% block body %}
+
+    <div id="gridSelect">
+    {{ grid(grid, 'APYDataGridBundle::blocks_js.jquery.html.twig') }}
+    </div>
+    <button id="actionSelect">Añadir</button>
+    
+{% endblock %}
+  
+
+{% block javascripts %}
+
+    <script>
+        
+   $(function(){
+    
+           ligarEventosGrid();     
+    });
+        
+    </script>
+
+</script>  
+{% endblock %}      

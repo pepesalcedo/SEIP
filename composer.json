@@ -1,12 +1,10 @@
 {
-    "name": "jose/siep",
-    "license": "proprietary",
+    "name": "symfony/framework-standard-edition",
+    "license": "MIT",
     "type": "project",
+    "description": "The \"Symfony Standard Edition\" distribution",
     "autoload": {
-        "psr-4": {
-            "": "src/",
-            "SymfonyStandard\\": "app/SymfonyStandard/"
-        }
+        "psr-4": { "": "src/", "SymfonyStandard\\": "app/SymfonyStandard/" }
     },
     "require": {
         "php": ">=5.3.9",
@@ -18,8 +16,15 @@
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.4",
         "sensio/distribution-bundle": "~4.0",
-        "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "sensio/framework-extra-bundle": "^3.0",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "apy/datagrid-bundle": "2.2.1",
+        "jms/serializer": "^1.0",
+        "jms/serializer-bundle": "1.0.0",
+        "phpoffice/phpexcel": "1.8.1",
+        "friendsofsymfony/rest-bundle": "1.7.1",
+        "willdurand/negotiation": "* 1.4.0",
+        "beberlei/DoctrineExtensions": "v1.0.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -56,6 +61,9 @@
         "symfony-assets-install": "relative",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "2.7-dev"
         }
     }
 }

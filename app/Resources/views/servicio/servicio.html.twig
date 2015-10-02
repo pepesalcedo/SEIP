@@ -1,0 +1,782 @@
+         <div class="contentModalWindow">
+            <form name="servicioForm" action="{{ path('serviciosubmitupdate', {'idrecurso': idRecurso}) }}" method="post" {{ form_enctype(form) }}> 
+                <div id="form">
+
+                {{ form_errors(form) }}
+                <div class="row" >
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.numero) }}</label>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                        {{ form_widget(form.numero, {'attr':{'readonly':'true'}}) }}
+                        </div>
+                        </div>
+                    </div>                
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.fecha) }}</label>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                        {{ form_widget(form.fecha, {'attr':{'readonly':'true'}}) }}
+                        </div>
+                        </div>
+                    </div>                
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12 formGroup">
+                        <div class="form-group">
+                        {{ form_widget(form.tipoServicio, {'attr':{'ng-model':'servicio.tipoServicio'}}) }}
+                        </div>
+                    </div> 
+                    <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12 formGroup">
+                        <div class="form-group">
+                            <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.estado) }}</label>
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                        {{ form_widget(form.estado, {'attr':{'readonly':'true'}}) }}
+                        </div>
+                        </div>
+                    </div>                        
+
+                </div>
+                <div id='container'>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#llamado">Llamado</a></li>
+                        <li><a data-toggle="tab" href="#pacientes">Paciente</a></li>
+                        <li id="idOficioJudicial"><a data-toggle="tab" href="#oficio">Oficio Judicial</a></li>
+                    </ul>
+                    <div class="tab-content">    
+                        <div id="llamado" class="tab-pane fade in active">
+                        <br>
+                        <div class="row" style="margin-right: 30px;" >
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12 formGroup">
+                                <div class="form-group">
+                                    <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.telefono) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.telefono) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12 formGroup">
+                                <div class="form-group form-hide-traslado">
+                                <label class="col-lg-7 col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.bomberos) }} </label>
+                                <div class="col-lg-5 col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.bomberos) }}
+
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3  col-xs-12 formGroup">
+                                <div class="form-group form-hide-traslado">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.cobertura) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.cobertura) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-3 col-xs-12 formGroup">
+                                <div class="form-group">
+                                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.movillogico) }}</label>            
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.movillogico) }}
+                                </div>
+                                </div>
+                            </div>        
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-5 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.ingresollamado) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    {{ form_widget(form.ingresollamado) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.ubicacion) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    {{ form_widget(form.ubicacion) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.centroAtencion) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    {{ form_widget(form.centroAtencion) }}
+                                </div>
+                                </div>
+                            </div>
+
+                            <div id="datosLocalizacion" class="form-hide-traslado">
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group form-hide-traslado">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.calle) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.calle) }}
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group form-hide-traslado">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.nro) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.nro) }}
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group form-hide-traslado">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.entrecalles) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.entrecalles) }}
+                                </div>
+                                </div>
+                            </div>
+                                
+                            <div class="col-sm-6 col-lg-2 formGroup">
+                                <div class="form-group form-hide-traslado">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.piso) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    {{ form_widget(form.piso) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-2 formGroup">
+                                <div class="form-group form-hide-traslado">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.dto) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    {{ form_widget(form.dto) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group form-hide-traslado">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.monoblock)}}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                    {{ form_widget(form.monoblock) }}
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group form-hide-traslado">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.barrio) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.barrio) }}
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group form-hide-traslado">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.provincia) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.provincia) }}
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup form-hide-traslado">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.localidad) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.localidad) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group form-hide-traslado">
+                                    <button id='idVerMapa'>Ver Mapa </button>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12 formGroup">
+                                <div class="form-group">
+                                <label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{ form_label(form.referencia) }}</label>
+                                <div class="col-lg-10 col-md-9 col-sm-8 col-xs-6">
+                                {{ form_widget(form.referencia) }}
+                                </div>
+                                </div>
+                            </div>
+                            
+                            <div id="motivo" class="form-hide-traslado">
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.motivo) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                <div class ="ui-widget">
+                                    {{ form_widget(form.motivo) }}
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <div class="col-md-10 col-sm-10 col-xs-10">
+
+                                    <input type="text" id="servicio_codigomotivo" maxlength="10">    
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+
+                                    <div id="estado_div" class="estado00"> </div>
+                                </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                    <button id='idConsultarFicha'>Consultar ficha </button>
+                                </div>
+                            </div>
+                            </div>
+                                
+                            
+                            <div id="motivoInicial" class="form-hide-despacho">
+                            <div class="col-sm-6 col-lg-6 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.motivoInicial) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.motivoInicial) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.medicoSolicita) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.medicoSolicita) }}
+                                </div>
+                                </div>
+                            </div>
+
+                            </div>
+                                
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.centroAtencionTraslado) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.centroAtencionTraslado) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                {{ form_widget(form.sector) }}
+                                </div>
+                            </div>                                
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.destinoFinal) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.destinoFinal) }}
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6 col-lg-4 formGroup form-hide-despacho">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.medicoRecibe) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.medicoRecibe) }}
+                                </div>
+                                </div>
+                            </div>    
+                        </div>
+                                
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.horaLlamado) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.horaLlamado) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.horaDespacho) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.horaDespacho) }}
+                                </div>
+                                </div>
+                            </div>                                
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.horaSalidaBase) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.horaSalidaBase) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.horaLlegadaDestino) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.horaLlegadaDestino) }}
+                                </div>
+                                </div>
+                            </div>                                
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.horaSalidaDestino) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.horaSalidaDestino) }}
+                                </div>
+                                </div>
+                            </div> 
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.horaLlegadaHospital) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.horaLlegadaHospital) }}
+                                </div>
+                                </div>
+                            </div>  
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.horaSalidaHospital) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.horaSalidaHospital) }}
+                                </div>
+                                </div>
+                            </div>                                
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.horaLlegadaBase) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.horaLlegadaBase) }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-4 formGroup">
+                                <div class="form-group">
+                                <label class="col-md-6 col-sm-6 col-xs-6 control-label">{{ form_label(form.horaDisponible) }}</label>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                {{ form_widget(form.horaDisponible) }}
+                                </div>
+                                </div>
+                            </div> 
+                            <div class="col-sm-6 col-lg-4 formGroup form-hide-traslado">
+                                <div class="form-group">
+                                <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.demoraDespacho) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.demoraDespacho) }}
+                                </div>
+                                </div>
+                            </div>                                 
+                            <div class="col-sm-6 col-lg-8 formGroup" style="height:40px">
+                                <div class="form-group">
+                                <label class="col-md-2 col-sm-2 col-xs-2 control-label">{{ form_label(form.observaciones) }}</label>
+                                <div class="col-md-10 col-sm-10 col-xs-10">
+                                {{ form_widget(form.observaciones) }}
+                                </div>
+                                </div>
+                            </div>                                 
+
+                        </div>
+
+                    </div>
+                    <div id="pacientes" class="tab-pane fade">
+                        <div id='pacientesGrid'>Cargando...</div>
+                        <div id='datosPaciente'></div>        
+                        <div class="row">
+
+                        </div>
+
+                    </div>
+                    <div id="oficio" class="tab-pane fade">
+                        <br>
+
+                        <div class="row" style="margin-right: 30px;" >
+                            <div class="col-sm-10 col-md-10 col-lg-10 col-xs-10 formGroup">
+                                <div class="form-group">
+                                    <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.tribunal) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.tribunal) }}
+                                </div>
+                                </div>
+                                
+                            </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+
+                                    <div id="estado_div3" class="estado00"> </div>
+                                </div>
+
+                             <div class="col-sm-10 col-md-10 col-lg-10 col-xs-10 formGroup">
+                                <div class="form-group">
+                                    <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.caratula) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.caratula) }}
+                                </div>
+                                </div>
+                            </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+
+                                </div>
+                                
+                                
+                            <div class="col-sm-10 col-md-10 col-lg-10 col-xs-10 formGroup">
+                                <div class="form-group">
+                                    <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.causa) }}</label>
+                                <div class="col-md-8 col-sm-8 col-xs-8">
+                                {{ form_widget(form.causa) }}
+                                </div>
+                                </div>
+                            </div>
+                                <div class="col-md-2 col-sm-2 col-xs-2">
+
+                                </div>
+                                
+
+                       </div>
+
+                    </div>
+                </div>
+                </div>                    
+            <div style='float:right'><input type="submit" value="Guardar"></div>
+
+
+                </div>
+                {{ form_row(form._token) }}                                
+            </form>
+            <div class="mensajeError" id="mensajeError"></div>
+
+        </div>
+
+
+
+
+
+
+<script>
+    $(document).ready(function(){
+
+            //Creating jqxTabs
+            //$('#jqxTabs').jqxTabs({ width: '99%',  selectionTracker: true, animationType: 'fade' });
+
+        preparaComboCities('{{ path("select_cities") }}');
+        preparaComboCentros('{{ path("select_centros") }}');
+        reloadCurrentGridPacientes();
+        
+        loadFirstPaciente();
+        
+        cambiarFicha();
+    //showTraslado(false);
+        fireFormEvents();
+        
+
+        // Eventos para actualizar las diferentes opciones de motivo
+        $('#servicio_motivo').change(function(){
+                getCodigoMotivo();
+        });  
+        
+
+        $('#servicio_tipoServicio').change(function(){
+                cambiarFicha();
+        });  
+
+        $('#servicio_bomberos').change(function(){
+                getMotivosSelect();
+        });  
+        
+        $('#servicio_codigomotivo').change(function(){
+                seleccionPorCodigo();
+        });  
+        
+        $('#idConsultarFicha').click(function(e) {
+            e.preventDefault();
+            abrirFichaServicio();
+        });
+        
+        $('#idVerMapa').click (function(e) {
+            e.preventDefault();
+            verMapa();
+        });
+        
+        
+        // inicializamos los campos relativos a motivo
+        getCodigoMotivo();
+        
+        
+
+    });
+        
+    function verMapa()
+    {
+                    var data = {
+                calle: $("#servicio_calle").val(),
+                nro: $("#servicio_nro").val(),
+                localidad : $('#servicio_localidad option:selected').text(),
+                provincia : $('#servicio_provincia option:selected').text()
+
+        };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("getMapa") }}',
+                data: data,
+                success: function(data) {
+                       // Abro la ficha en otra ventana para que no moleste
+                        $('#detalles_float2').html(data);
+
+                        var scopeAngular = angular.element('[ng-controller=formController]').scope();     
+                        scopeAngular.jqxWindowSettings2.height = '500';
+
+                        scopeAngular.jqxWindowSettings2.apply('open');
+
+                    }
+                }
+            );
+
+        
+        
+        
+    }
+    
+
+
+/**
+ * Redirige a la ficha de servicio en una ventana nueva
+ */
+        function abrirFichaServicio()
+        {
+            var data = {
+                id_motivo: $("#servicio_motivo").val()
+                //clasetipo: $('#recurso_clasetipo').val()
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("get_url_ficha") }}',
+                data: data,
+                success: function(data) {
+                       // Abro la ficha en otra ventana para que no moleste
+                       var win = window.open(data, '_blank');
+                       //win.focus();
+                    }
+                }
+            );
+            
+        }
+
+        function reloadCurrentGridPacientes()
+        {
+            $idServicio = {{idRecurso}};
+            if ($idServicio > 0)
+            {
+                reloadGridPacientes($idServicio);
+            }
+            else
+            {
+                var $grid = $('#gridPacientes');
+                $grid.html('No hay pacientes asignados');
+
+            }   
+            
+        }
+        // Se carga el grid de pacientes al inicio y cuando se modifica
+        function reloadGridPacientes($idServicio)
+        {
+        
+            var data = {
+                servicio_id: $idServicio
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("serviciopacientesgridajax",{'idrecurso': idRecurso}) }}',
+                data: data,
+                success: function(data) {
+                    var $grid = $('#pacientesGrid');
+                    $grid.html(data);
+                }
+            });
+
+        }
+        
+        function cambiarFicha()
+        {
+            var fichaServicio =  $("input:radio[name='servicio[tipoServicio]']:checked").val();
+        
+            if (fichaServicio === 'D')
+                showTraslado(false);
+            else
+                showTraslado(true);
+        }
+        
+
+        function getMotivosSelect()
+        {
+            var data = {
+                bomberos: $("input:radio[name='servicio[bomberos]']:checked").val()
+                //clasetipo: $('#recurso_clasetipo').val()
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("select_motivos") }}',
+                data: data,
+                success: function(data) {
+                    var $clase_selector = $('#servicio_motivo');
+
+                    $clase_selector.html('<option>Motivos</option>');
+
+                    var myArray = jQuery.parseJSON(data);
+                    for (var i=0, total = myArray.length; i < total; i++) {
+                        $clase_selector.append('<option value="' + myArray[i].id + '">' + myArray[i].name + '</option>');
+                    }
+                    
+                    $('#servicio_codigomotivo').val('');
+                    seleccionarTipo('00');
+                }
+            });
+            
+        }
+
+
+        function getCodigoMotivo()
+        {
+            var data = {
+                id_motivo: $("#servicio_motivo").val()
+                //clasetipo: $('#recurso_clasetipo').val()
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("get_codigo_motivo") }}',
+                data: data,
+                success: function(data) {
+                        var $codigomotivo_selector = $('#servicio_codigomotivo');
+                        $codigomotivo_selector.val(data);
+                        seleccionarTipo(data);
+                    }
+                }
+            );
+            
+        }
+
+        function seleccionarTipo($codigo)
+        {
+            if (!$codigo)
+                return;
+            
+             // de esta manera se aplica el estilo a partir del codigo  
+            var res = $codigo.substr(0, 2);
+            
+            var clase = 'estado' + res;
+            
+            // le quitamos todas las clases y le aplicamos la clase adecuada
+            $("#estado_div").removeClass();
+            $('#estado_div').addClass(clase);
+            
+            // le quitamos todas las clases y le aplicamos la clase adecuada
+            $("#estado_div2").removeClass();
+            $('#estado_div2').addClass(clase);
+                
+            // le quitamos todas las clases y le aplicamos la clase adecuada
+            $("#estado_div3").removeClass();
+            $('#estado_div3').addClass(clase);
+
+    }
+        
+
+        function seleccionPorCodigo()
+        {
+            //Primero aplicamos el color
+            seleccionarTipo($("#servicio_codigomotivo").val());
+        
+            var data = {
+                codigo_motivo: $("#servicio_codigomotivo").val()
+                //clasetipo: $('#recurso_clasetipo').val()
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("get_idMotivoByCodigo") }}',
+                data: data,
+                success: function(data) {
+                    var motivos_selector = $('#servicio_motivo');
+                    $('#servicio_motivo option[value="'+data+'"]').prop('selected', true);
+        //$codigomotivo_selector.html(data.codigo);
+                    }
+                }
+            );
+            
+        }
+
+
+        function loadPacienteBase($idPaciente, $url)
+        {
+            var data = {
+                paciente_id: $idPaciente
+            };
+
+            $.ajax({
+                type: 'get',
+                url: $url,
+                data: data,
+                success: function(data) {
+                    var $formulario = $('#datosPaciente');
+                    $formulario.html(data);
+                    // cargo el tipo para que se vea
+                    var $codigomotivo_selector = $('#servicio_codigomotivo');
+                    seleccionarTipo($codigomotivo_selector.val());
+                }
+            });
+            
+        }
+
+        function loadFirstPaciente()
+        {
+            loadPacienteBase(0, '{{ path("serviciopacientesubmitupdate",{'idAdicional': idRecurso , 'idrecurso': 0, 'command': 'first' }) }}');
+        }
+        
+
+        function loadPaciente($idPaciente)
+        {
+            loadPacienteBase($idPaciente, '{{ path("serviciopacientesubmitupdate",{'idAdicional': idRecurso , 'idrecurso': 0, 'command': 'current' }) }}');
+        
+        }
+        
+        function loadNextPaciente($idPaciente)
+        {
+            loadPacienteBase($idPaciente, '{{ path("serviciopacientesubmitupdate",{'idAdicional': idRecurso , 'idrecurso': 0, 'command': 'next' }) }}');
+        }
+        
+        function loadPreviousPaciente($idPaciente)
+        {
+            loadPacienteBase($idPaciente, '{{ path("serviciopacientesubmitupdate",{'idAdicional': idRecurso , 'idrecurso': 0, 'command': 'previous' }) }}');
+
+        }
+        
+        function showTraslado (bHide)
+        {
+            if (bHide)
+            {
+                $('.form-hide-traslado').hide();
+                $('.form-hide-despacho').show();
+                $('#idOficioJudicial').hide();
+                if ($('#servicio_calle').val() === "")
+                    $('#servicio_calle').val(' - ')
+
+            }
+            else
+            {
+                $('.form-hide-traslado').show();
+                $('.form-hide-despacho').hide();
+                $('#idOficioJudicial').show();
+
+            }
+        }
+
+    
+    </script>
+    
+    
+<script>
+ 
+  $(function() {
+    $( "#servicio_motivo" ).combobox(true);
+  });
+  </script>
