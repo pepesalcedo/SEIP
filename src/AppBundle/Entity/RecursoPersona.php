@@ -119,7 +119,9 @@ class RecursoPersona extends BasicEntity
         return ($this->dni != null)? $this->dni : "";
     }
 
-
+    public function getNombreCompleto () {
+        return $apellido. ", " . $nombre;
+    }
 
     /**
      * Get id
@@ -129,283 +131,6 @@ class RecursoPersona extends BasicEntity
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return CentroAtencion
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set numero
-     *
-     * @param integer $numero
-     * @return CentroAtencion
-     */
-    public function setNumero($numero)
-    {
-        $this->numero = $numero;
-
-        return $this;
-    }
-
-    /**
-     * Get numero
-     *
-     * @return integer 
-     */
-    public function getNumero()
-    {
-        return $this->numero;
-    }
-
-    /**
-     * Set descripcion
-     *
-     * @param string $descripcion
-     * @return CentroAtencion
-     */
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    /**
-     * Get descripcion
-     *
-     * @return string 
-     */
-    public function getDescripcion()
-    {
-        return $this->descripcion;
-    }
-
-    /**
-     * Set calle
-     *
-     * @param string $calle
-     * @return CentroAtencion
-     */
-    public function setCalle($calle)
-    {
-        $this->calle = $calle;
-
-        return $this;
-    }
-
-    /**
-     * Get calle
-     *
-     * @return string 
-     */
-    public function getCalle()
-    {
-        return $this->calle;
-    }
-
-    /**
-     * Set nro
-     *
-     * @param string $nro
-     * @return CentroAtencion
-     */
-    public function setNro($nro)
-    {
-        $this->nro = $nro;
-
-        return $this;
-    }
-
-    /**
-     * Get nro
-     *
-     * @return string 
-     */
-    public function getNro()
-    {
-        return $this->nro;
-    }
-
-    /**
-     * Set entrecalles
-     *
-     * @param string $entrecalles
-     * @return CentroAtencion
-     */
-    public function setEntrecalles($entrecalles)
-    {
-        $this->entrecalles = $entrecalles;
-
-        return $this;
-    }
-
-    /**
-     * Get entrecalles
-     *
-     * @return string 
-     */
-    public function getEntrecalles()
-    {
-        return $this->entrecalles;
-    }
-
-    /**
-     * Set piso
-     *
-     * @param string $piso
-     * @return CentroAtencion
-     */
-    public function setPiso($piso)
-    {
-        $this->piso = $piso;
-
-        return $this;
-    }
-
-    /**
-     * Get piso
-     *
-     * @return string 
-     */
-    public function getPiso()
-    {
-        return $this->piso;
-    }
-
-    /**
-     * Set dto
-     *
-     * @param string $dto
-     * @return CentroAtencion
-     */
-    public function setDto($dto)
-    {
-        $this->dto = $dto;
-
-        return $this;
-    }
-
-    /**
-     * Get dto
-     *
-     * @return string 
-     */
-    public function getDto()
-    {
-        return $this->dto;
-    }
-
-    /**
-     * Set telefono
-     *
-     * @param string $telefono
-     * @return CentroAtencion
-     */
-    public function setTelefono($telefono)
-    {
-        $this->telefono = $telefono;
-
-        return $this;
-    }
-
-    /**
-     * Get telefono
-     *
-     * @return string 
-     */
-    public function getTelefono()
-    {
-        return $this->telefono;
-    }
-
-    /**
-     * Set tipo
-     *
-     * @param \AppBundle\Entity\TipoCentroAtencion $tipo
-     * @return CentroAtencion
-     */
-    public function setTipo(\AppBundle\Entity\TipoCentroAtencion $tipo = null)
-    {
-        $this->tipo = $tipo;
-
-        return $this;
-    }
-
-    /**
-     * Get tipo
-     *
-     * @return \AppBundle\Entity\TipoCentroAtencion 
-     */
-    public function getTipo()
-    {
-        return $this->tipo;
-    }
-
-    
-    /**
-     * Set localidad
-     *
-     * @param \AppBundle\Entity\Localidad $localidad
-     * @return CentroAtencion
-     */
-    public function setLocalidad(\AppBundle\Entity\Localidad $localidad = null)
-    {
-        $this->localidad = $localidad;
-
-        return $this;
-    }
-
-    /**
-     * Get localidad
-     *
-     * @return \AppBundle\Entity\Localidad 
-     */
-    public function getLocalidad()
-    {
-        return $this->localidad;
-    }
-
-    /**
-     * Set estado
-     *
-     * @param \AppBundle\Entity\EstadoTabla $estado
-     * @return CentroAtencion
-     */
-    public function setEstado(\AppBundle\Entity\EstadoTabla $estado = null)
-    {
-        $this->estado = $estado;
-
-        return $this;
-    }
-
-    /**
-     * Get estado
-     *
-     * @return \AppBundle\Entity\EstadoTabla 
-     */
-    public function getEstado()
-    {
-        return $this->estado;
     }
 
     /**
@@ -569,37 +294,26 @@ class RecursoPersona extends BasicEntity
         return $this->claserecurso;
     }
 
-
     /**
-     * Add gruposRecurso
+     * Set estado
      *
-     * @param \AppBundle\Entity\GrupoRecurso $gruposRecurso
+     * @param \AppBundle\Entity\EstadoTabla $estado
      * @return RecursoPersona
      */
-    public function addGruposRecurso(\AppBundle\Entity\GrupoRecurso $gruposRecurso)
+    public function setEstado(\AppBundle\Entity\EstadoTabla $estado = null)
     {
-        $this->gruposRecurso[] = $gruposRecurso;
+        $this->estado = $estado;
 
         return $this;
     }
 
     /**
-     * Remove gruposRecurso
+     * Get estado
      *
-     * @param \AppBundle\Entity\GrupoRecurso $gruposRecurso
+     * @return \AppBundle\Entity\EstadoTabla 
      */
-    public function removeGruposRecurso(\AppBundle\Entity\GrupoRecurso $gruposRecurso)
+    public function getEstado()
     {
-        $this->gruposRecurso->removeElement($gruposRecurso);
-    }
-
-    /**
-     * Get gruposRecurso
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getGruposRecurso()
-    {
-        return $this->gruposRecurso;
+        return $this->estado;
     }
 }

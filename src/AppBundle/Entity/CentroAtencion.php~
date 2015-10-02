@@ -124,7 +124,6 @@ class CentroAtencion extends BasicEntity
      * @ORM\ManyToOne(targetEntity="Localidad")
      * @ORM\JoinColumn(name="localidad_id", referencedColumnName="id")
      * @Assert\Type("AppBundle\Entity\Localidad", message="Debe introducir una localidad valida")
-     * @Assert\NotNull(message="Debe introducir una localidad")
      * @Assert\NotBlank(message="Debe introducir una localidad")
      * @GRID\Column(field="localidad.name", title="Localidad", operatorsVisible=false)
      * @GRID\Column(field="localidad.provincia.name", title="Provincia", operatorsVisible=false)

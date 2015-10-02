@@ -406,7 +406,28 @@ public function rellenarFila($objPHPExcel, $servicio, $paciente, $filaServicio)
  */
 public function rellenarEstadisticasGenerales($objPHPExcel, $fechaDesde, $fechaHasta)
 {
-        $repository = $this->getDoctrine()->getEntityManager()
+        $filaServicio = 6;
+        $this->rellenarEstadisticasGeneralesCodigo($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+        $this->rellenarEstadisticasGeneralesSexo($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+        $this->rellenarEstadisticasGeneralesLocalidades($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+        $this->rellenarEstadisticasGeneralesLlamadas($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+        $this->rellenarEstadisticasGeneralesMedicos($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+        $this->rellenarEstadisticasGeneralesOtros($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+        
+
+        
+}
+
+/**
+ * Estadísticas por código
+ * @param type $objPHPExcel
+ * @param type $fechaDesde
+ * @param type $fechaHasta
+ * @param type $filaServicio
+ */
+public function rellenarEstadisticasGeneralesCodigo($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $repository = $this->getDoctrine()->getEntityManager()
                     ->getRepository('AppBundle:ServicioPaciente');
         
         
@@ -414,7 +435,7 @@ public function rellenarEstadisticasGenerales($objPHPExcel, $fechaDesde, $fechaH
         
         $queryBuilder = $repository->createQueryBuilder('p')
             ->innerJoin('AppBundle:Servicio', 's', 'WITH', 'p.servicio = s.id')
-            ->innerJoin('AppBundle:Motivo', 'm', 'WITH', 's.motivo = m.id')
+            ->leftJoin('AppBundle:Motivo', 'm', 'WITH', 's.motivo = m.id')
             ->select(' substring(m.codigo, 1, 2) AS cod, MONTH(s.fecha) AS gMes, count(p) as total')
             ->where('s.fecha >= :desde')
             ->andwhere('s.fecha < :hasta')
@@ -429,26 +450,382 @@ public function rellenarEstadisticasGenerales($objPHPExcel, $fechaDesde, $fechaH
         $query = $queryBuilder->getQuery();
         $datos = $query->getResult();
         
-        $datoAnterior = null;
-        $filaServicio = 1;
-        $offsetExcel = 5;
+        $this->rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, $filaServicio, 'CÓDIGOS', array(array('/01 /','/02 /','/03 /','/04 /'),array('ROJO','AMARILLO','VERDE','AZUL')));
+}
+
+/**
+ * Estadísticas por sexo
+ * @param type $objPHPExcel
+ * @param type $fechaDesde
+ * @param type $fechaHasta
+ * @param type $filaServicio
+ */
+public function rellenarEstadisticasGeneralesSexo($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $repository = $this->getDoctrine()->getEntityManager()
+                    ->getRepository('AppBundle:ServicioPaciente');
+    
+    
+    
+    $queryBuilder = $repository->createQueryBuilder('p')
+            ->innerJoin('AppBundle:Servicio', 's', 'WITH', 'p.servicio = s.id')
+            ->select(' p.sexo AS cod, MONTH(s.fecha) AS gMes, count(p) as total')
+            ->where('s.fecha >= :desde')
+            ->andwhere('s.fecha < :hasta')
+            ->andwhere('s.tipoServicio = :tipo')
+            ->setParameter('desde', $fechaDesde)
+            ->setParameter('hasta', $fechaHasta)
+            ->setParameter('tipo', 'D')
+            ->groupby('cod, gMes')
+            ->orderby('cod, gMes')
+                    ;
         
-        $this->ponerEncabezadoStatistics($objPHPExcel, ($filaServicio+$offsetExcel), 'CODIGOS');
-                
-        $filaServicio++;
-        
-        foreach($datos as $datoMes)
-        {
-            
-            if ($datoAnterior && $datoMes["cod"] != $datoAnterior["cod"]) {
-                $filaServicio++;
-            }
-            $this->rellenarDatoGeneral($objPHPExcel, 0, $datoMes, $filaServicio);
-            $datoAnterior = $datoMes;
-            
-        }
+    $query = $queryBuilder->getQuery();
+    $datos = $query->getResult();
+
+    $this->rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, $filaServicio, 'SEXO', array(array('/F /','/M /'),array('FEMENINO','MASCULINO')));
 
 }
+
+/**
+ * Estadísticas por localidades
+ * @param type $objPHPExcel
+ * @param type $fechaDesde
+ * @param type $fechaHasta
+ * @param type $filaServicio
+ */
+public function rellenarEstadisticasGeneralesLocalidades($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $repository = $this->getDoctrine()->getEntityManager()
+                    ->getRepository('AppBundle:ServicioPaciente');
+        
+        
+        
+        
+        $queryBuilder = $repository->createQueryBuilder('p')
+            ->innerJoin('AppBundle:Servicio', 's', 'WITH', 'p.servicio = s.id')
+            ->leftJoin('AppBundle:Localidad', 'l', 'WITH', 's.localidad = l.id')
+            ->select(' l.name AS cod, MONTH(s.fecha) AS gMes, count(p) as total')
+            ->where('s.fecha >= :desde')
+            ->andwhere('s.fecha < :hasta')
+            ->andwhere('s.tipoServicio = :tipo')
+            ->setParameter('desde', $fechaDesde)
+            ->setParameter('hasta', $fechaHasta)
+            ->setParameter('tipo', 'D')
+            ->groupby('cod, gMes')
+            ->orderby('cod, gMes')
+                    ;
+        
+        $query = $queryBuilder->getQuery();
+        $datos = $query->getResult();
+        
+        $this->rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, $filaServicio, 'LOCALIDADES', null);
+}
+
+/**
+ * Estadísticas por llamadas
+ * @param type $objPHPExcel
+ * @param type $fechaDesde
+ * @param type $fechaHasta
+ * @param type $filaServicio
+ */
+public function rellenarEstadisticasGeneralesLlamadas($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $repository = $this->getDoctrine()->getEntityManager()
+                    ->getRepository('AppBundle:ServicioPaciente');
+        
+        
+        
+        
+        $queryBuilder = $repository->createQueryBuilder('p')
+            ->innerJoin('AppBundle:Servicio', 's', 'WITH', 'p.servicio = s.id')
+            ->leftJoin('AppBundle:IngresoLlamado', 'i', 'WITH', 's.ingresoLlamado = i.id')
+            ->select(' i.name AS cod, MONTH(s.fecha) AS gMes, count(p) as total')
+            ->where('s.fecha >= :desde')
+            ->andwhere('s.fecha < :hasta')
+            ->andwhere('s.tipoServicio = :tipo')
+            ->setParameter('desde', $fechaDesde)
+            ->setParameter('hasta', $fechaHasta)
+            ->setParameter('tipo', 'D')
+            ->groupby('cod, gMes')
+            ->orderby('cod, gMes')
+                    ;
+        
+        $query = $queryBuilder->getQuery();
+        $datos = $query->getResult();
+        
+        $this->rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, $filaServicio, 'LLAMADAS', null);
+}
+
+
+/**
+ * Estadísticas por medicos que están dentro del móvil lógico
+ * @param type $objPHPExcel
+ * @param type $fechaDesde
+ * @param type $fechaHasta
+ * @param type $filaServicio
+ */
+public function rellenarEstadisticasGeneralesMedicos($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $repository = $this->getDoctrine()->getEntityManager()
+                    ->getRepository('AppBundle:ServicioPaciente');
+        
+        
+        
+        
+        $queryBuilder = $repository->createQueryBuilder('p')
+            ->innerJoin('AppBundle:Servicio', 's', 'WITH', 'p.servicio = s.id')
+            ->innerJoin('AppBundle:GrupoRecurso', 'g', 'WITH', 's.movillogico = g.id')
+            ->innerJoin('g.personas', 'r')
+            ->innerJoin('r.claserecurso','c','WITH','c.descripcion = :claseRecurso')
+            ->select(" concat(r.apellido, concat(', ', r.nombre)) AS cod, MONTH(s.fecha) AS gMes, count(p) as total")
+            ->where('s.fecha >= :desde')
+            ->andwhere('s.fecha < :hasta')
+            ->andwhere('s.tipoServicio = :tipo')
+            ->setParameter('desde', $fechaDesde)
+            ->setParameter('hasta', $fechaHasta)
+            ->setParameter('claseRecurso', 'Médico')  // TODO, configurable
+            ->setParameter('tipo', 'D')
+            ->groupby('cod, gMes')
+            ->orderby('cod, gMes')
+                    ;
+        
+        $query = $queryBuilder->getQuery();
+        $datos = $query->getResult();
+        
+        $this->rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, $filaServicio, 'MÉDICOS', null);
+}
+
+/**
+ * Estadísticas otros
+ * @param type $objPHPExcel
+ * @param type $fechaDesde
+ * @param type $fechaHasta
+ * @param type $filaServicio
+ */
+public function rellenarEstadisticasGeneralesOtros($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $this->rellenarEstadisticasGeneralesPrevenciones($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+    $this->rellenarEstadisticasGeneralesAuxiliosAnulados($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+    $this->rellenarEstadisticasGeneralesPacientesAusentes($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+    $this->rellenarEstadisticasGeneralesSinDiagnostico($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+    $this->rellenarEstadisticasGeneralesAuxiliosRealizados($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+    $this->rellenarEstadisticasGeneralesTotalAuxilios($objPHPExcel, $fechaDesde, $fechaHasta, $filaServicio);
+
+    
+    
+}
+
+
+public function rellenarEstadisticasGeneralesPrevenciones($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $repository = $this->getDoctrine()->getEntityManager()
+                    ->getRepository('AppBundle:ServicioPaciente');
+        
+        
+        
+        
+        $queryBuilder = $repository->createQueryBuilder('p')
+            ->innerJoin('AppBundle:Servicio', 's', 'WITH', 'p.servicio = s.id')
+            ->select("'PREVENCIONES' AS cod, MONTH(s.fecha) AS gMes, count(p) as total")
+            ->where('s.fecha >= :desde')
+            ->andwhere('s.fecha < :hasta')
+            ->andwhere('s.tipoServicio = :tipo')
+            ->andwhere('s.cobertura= :cobertura')
+
+            ->setParameter('desde', $fechaDesde)
+            ->setParameter('hasta', $fechaHasta)
+            ->setParameter('tipo', 'D')
+            ->setParameter('cobertura', 'S')
+            ->groupby('cod, gMes')
+            ->orderby('cod, gMes')
+                    ;
+        
+        $query = $queryBuilder->getQuery();
+        $datos = $query->getResult();
+        
+        $this->rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, $filaServicio, 'OTROS', null);
+}
+
+public function rellenarEstadisticasGeneralesAuxiliosAnulados($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $repository = $this->getDoctrine()->getEntityManager()
+                    ->getRepository('AppBundle:ServicioPaciente');
+        
+        
+        
+        
+        $queryBuilder = $repository->createQueryBuilder('p')
+            ->innerJoin('AppBundle:Servicio', 's', 'WITH', 'p.servicio = s.id')
+            ->innerJoin('p.diagnostico1', 'd')
+
+            ->select("'AUXILIOS ANULADOS' AS cod, MONTH(s.fecha) AS gMes, count(p) as total")
+            ->where('s.fecha >= :desde')
+            ->andwhere('s.fecha < :hasta')
+            ->andwhere('s.tipoServicio = :tipo')
+            ->andwhere('d.identificador= :identificador')
+
+            ->setParameter('desde', $fechaDesde)
+            ->setParameter('hasta', $fechaHasta)
+            ->setParameter('tipo', 'D')
+            ->setParameter('identificador', 'S1')
+            ->groupby('cod, gMes')
+            ->orderby('cod, gMes')
+                    ;
+        
+        $query = $queryBuilder->getQuery();
+        $datos = $query->getResult();
+        
+        $this->rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, $filaServicio, null, null);
+}
+
+public function rellenarEstadisticasGeneralesPacientesAusentes($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $repository = $this->getDoctrine()->getEntityManager()
+                    ->getRepository('AppBundle:ServicioPaciente');
+        
+        
+        
+        
+        $queryBuilder = $repository->createQueryBuilder('p')
+            ->innerJoin('AppBundle:Servicio', 's', 'WITH', 'p.servicio = s.id')
+            ->innerJoin('p.diagnostico1', 'd')
+
+            ->select("'PACIENTES AUSENTES' AS cod, MONTH(s.fecha) AS gMes, count(p) as total")
+            ->where('s.fecha >= :desde')
+            ->andwhere('s.fecha < :hasta')
+            ->andwhere('s.tipoServicio = :tipo')
+            ->andwhere('d.identificador= :identificador')
+
+            ->setParameter('desde', $fechaDesde)
+            ->setParameter('hasta', $fechaHasta)
+            ->setParameter('tipo', 'D')
+            ->setParameter('identificador', 'S2')
+            ->groupby('cod, gMes')
+            ->orderby('cod, gMes')
+                    ;
+        
+        $query = $queryBuilder->getQuery();
+        $datos = $query->getResult();
+        
+        $this->rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, $filaServicio, null, null);
+}
+
+public function rellenarEstadisticasGeneralesAuxiliosRealizados($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $repository = $this->getDoctrine()->getEntityManager()
+                    ->getRepository('AppBundle:ServicioPaciente');
+        
+        $queryBuilder = $repository->createQueryBuilder('p')
+            ->innerJoin('AppBundle:Servicio', 's', 'WITH', 'p.servicio = s.id')
+            ->innerJoin('p.diagnostico1', 'd')
+
+            ->select("'AUXILIOS REALIZADOS' AS cod, MONTH(s.fecha) AS gMes, count(p) as total")
+            ->where('s.fecha >= :desde')
+            ->andwhere('s.fecha < :hasta')
+            ->andwhere('s.tipoServicio = :tipo')
+            ->andwhere('d.identificador<>:identificador AND d.identificador<>:identificador2')
+            ->setParameter('desde', $fechaDesde)
+            ->setParameter('hasta', $fechaHasta)
+            ->setParameter('tipo', 'D')
+            ->setParameter('identificador', 'S1')
+            ->setParameter('identificador2', 'S2')
+
+            ->groupby('cod, gMes')
+            ->orderby('cod, gMes');
+        
+        $query = $queryBuilder->getQuery();
+        $datos = $query->getResult();
+        
+        $this->rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, $filaServicio, null, null);
+}
+
+
+public function rellenarEstadisticasGeneralesSinDiagnostico($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $repository = $this->getDoctrine()->getEntityManager()
+                    ->getRepository('AppBundle:ServicioPaciente');
+        
+        $queryBuilder = $repository->createQueryBuilder('p')
+            ->innerJoin('AppBundle:Servicio', 's', 'WITH', 'p.servicio = s.id')
+
+            ->select("'SIN DIAGNOSTICO' AS cod, MONTH(s.fecha) AS gMes, count(p) as total")
+            ->where('s.fecha >= :desde')
+            ->andwhere('s.fecha < :hasta')
+            ->andwhere('s.tipoServicio = :tipo')
+            ->andwhere('p.diagnostico1 IS NOT NULL')
+
+            ->setParameter('desde', $fechaDesde)
+            ->setParameter('hasta', $fechaHasta)
+            ->setParameter('tipo', 'D')
+
+            ->groupby('cod, gMes')
+            ->orderby('cod, gMes');
+        
+        $query = $queryBuilder->getQuery();
+        $datos = $query->getResult();
+        
+        $this->rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, $filaServicio, null, null);
+}
+
+public function rellenarEstadisticasGeneralesTotalAuxilios($objPHPExcel, $fechaDesde, $fechaHasta, &$filaServicio)
+{
+    $repository = $this->getDoctrine()->getEntityManager()
+                    ->getRepository('AppBundle:ServicioPaciente');
+        
+        $queryBuilder = $repository->createQueryBuilder('p')
+            ->innerJoin('AppBundle:Servicio', 's', 'WITH', 'p.servicio = s.id')
+
+            ->select("'TOTAL DE AUXILIOS' AS cod, MONTH(s.fecha) AS gMes, count(p) as total")
+            ->where('s.fecha >= :desde')
+            ->andwhere('s.fecha < :hasta')
+            ->andwhere('s.tipoServicio = :tipo')
+
+            ->setParameter('desde', $fechaDesde)
+            ->setParameter('hasta', $fechaHasta)
+            ->setParameter('tipo', 'D')
+
+            ->groupby('cod, gMes')
+            ->orderby('cod, gMes');
+        
+        $query = $queryBuilder->getQuery();
+        $datos = $query->getResult();
+        
+        $this->rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, $filaServicio, null, null);
+}
+
+
+/**
+ * Función para rellenar cada una de las celdas con la suma que se ha encontrado anteriormiente dependiendo del filtro, la columna inicial debe contener COD
+ * @param type $objPHPExcel
+ * @param type $datos
+ * @param type $filaServicio
+ * @param type $titulo
+ */
+public function rellenarEstadisticasGeneralesDatos($objPHPExcel, $datos, &$filaServicio, $titulo, $arrayReplace)
+{
+    if ($titulo) {    
+        $this->ponerEncabezadoStatistics($objPHPExcel, $filaServicio, $titulo);
+        $filaServicio++;
+    }
+
+    $datoAnterior = null;
+
+    foreach($datos as $datoMes)
+    {
+
+        if ($datoAnterior && $datoMes["cod"] != $datoAnterior["cod"]) {
+            $filaServicio++;
+        }
+        $this->rellenarDatoGeneral($objPHPExcel, 0, $datoMes, $filaServicio, $arrayReplace);
+        $datoAnterior = $datoMes;
+
+    }
+
+    $filaServicio++;
+}
+
+
 
 /**
  * Rellena una fila del excel con los datos del servicio y del paciente
@@ -456,13 +833,22 @@ public function rellenarEstadisticasGenerales($objPHPExcel, $fechaDesde, $fechaH
  * @param type $paciente
  * @param type $filaServicio
  */
-public function rellenarDatoGeneral($objPHPExcel,$hoja, $dato, $filaServicio)
+public function rellenarDatoGeneral($objPHPExcel,$hoja, $dato, $filaExcel, $arrayReplace)
 {
     $columna='A';
-    $filaExcel = $filaServicio + 5;
     $mes = $dato["gMes"];
     $columnaMesNum = ord($columna) + $mes;
     $columnaMes = chr($columnaMesNum);
+    
+    if ($dato["cod"] == null)
+    {
+        $dato["cod"] = "SIN ESPECIFICAR";
+    }
+    else if ($arrayReplace)
+    {
+        $aux = preg_replace($arrayReplace[0], $arrayReplace[1], $dato["cod"]." ", 1);
+        $dato["cod"] = $aux;
+    }
     // relleno los datos del paciente en la fila que corresponde
         $objPHPExcel->setActiveSheetIndex($hoja)
             ->setCellValue("A".$filaExcel, $dato["cod"])
