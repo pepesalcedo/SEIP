@@ -1,0 +1,38 @@
+{% extends '::basebrown.html.twig' %}
+{% block title 'Ingresar' %}
+{% block superbody %}
+
+
+
+    <header id="top" class="header">
+        <div class="usuario-login-box text-vertical-center" style="background: rgba(255, 255, 255, .8)">
+            <form class="form-signin" action="{{ path('login_check') }}" method="post">
+                <h2 class="form-signin-heading">Ingresar a Portal Brown</h2>
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans({}, 'messages') }}</div>
+                {% endif %}
+                {% for label, flashes in app.session.flashbag.all %}
+                    {% for flash in flashes %}
+                        <div class="alert alert-{{ label }}">
+                            {{ flash|raw }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                <label for="inputEmail" class="sr-only">DNI</label>
+                <input type="text" name="_username" id="inputEmail" class="form-control" placeholder="DNI" required autofocus>
+                <label for="inputPassword" class="sr-only">Contraseña</label>
+                <input type="password" name="_password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
+                <div style="text-align: center; padding-top: 20px;">
+                <a href="{{ path('usuarios_recuperar_password') }}">¿Olvidó su contraseña?</a>
+                </div>
+                <hr>
+                <a href="{{ path('usuarios_registro_dni') }}" class="btn btn-block btn-success">Si aún no está registrado, haga click aquí</a>
+                <a href="{{ path('site_homepage') }}" class="btn btn-block btn-warning">Volver a Portal Brown</a>
+            </form>
+        </div>
+    </header>
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/usuario/css/login.css') }}">
+{% endblock %}

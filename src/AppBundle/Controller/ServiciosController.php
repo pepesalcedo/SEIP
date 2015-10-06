@@ -59,11 +59,16 @@ class ServiciosController extends BasicController {
 
                 // Calculamos el proximo número de servicio y lo ponemos en el número
                 $task->calculateNextNumber($repository);
+                
+                // si es nuevo le asigno el usuario
+                $task->setUsuarioAlta($this->getUser());
+
         
 
         }
 
         if ( $request->isMethod( 'POST' ) ) {
+            
             // Actualizo los pacientes con lo que tenga en memoria
             $this->GrabarPacientesAsociados($session, $task);
         }
@@ -80,6 +85,11 @@ class ServiciosController extends BasicController {
         $form = $this->createForm($formTemplate, $task);
         if ( $request->isMethod( 'POST' ) ) {
           $form->handleRequest( $request );
+          
+        if ($task->getEstado() && $task->getEstado()->getId() > 1) {
+                $task->setUsuarioCierre ($this->getUser ());
+            }
+
           return $this->saveData($form);
         }
 

@@ -32,15 +32,22 @@
                         {{ form_widget(form.estado, {'attr':{'readonly':'true'}}) }}
                         </div>
                         </div>
-                    </div>                        
+                    </div>  
+
 
                 </div>
                 <div id='container'>
+                   <div style="float:right; margin-right: 50px">
+
+                                    <div id="estado_div" class="estado00"> </div>
+                   </div>
+
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#llamado">Llamado</a></li>
                         <li><a data-toggle="tab" href="#pacientes">Paciente</a></li>
                         <li id="idOficioJudicial"><a data-toggle="tab" href="#oficio">Oficio Judicial</a></li>
                     </ul>
+
                     <div class="tab-content">    
                         <div id="llamado" class="tab-pane fade in active">
                         <br>
@@ -201,7 +208,7 @@
                             </div>
                             
                             <div id="motivo" class="form-hide-traslado">
-                            <div class="col-sm-6 col-lg-4 formGroup">
+                            <div class="col-sm-6 col-lg-6 formGroup">
                                 <div class="form-group">
                                 <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.motivo) }}</label>
                                 <div class="col-md-8 col-sm-8 col-xs-8">
@@ -211,20 +218,12 @@
                                 </div>
                                 </div>
                             </div>
-                            <div class="col-sm-6 col-lg-4 formGroup">
+                            <div class="col-sm-3 col-lg-3 formGroup">
                                 <div class="form-group">
-                                <div class="col-md-10 col-sm-10 col-xs-10">
-
                                     <input type="text" id="servicio_codigomotivo" maxlength="10">    
                                 </div>
-                                <div class="col-md-2 col-sm-2 col-xs-2">
-
-                                    <div id="estado_div" class="estado00"> </div>
-                                </div>
-
-                                </div>
                             </div>
-                            <div class="col-sm-6 col-lg-4 formGroup">
+                            <div class="col-sm-3 col-lg-3 formGroup">
                                 <div class="form-group">
                                     <button id='idConsultarFicha'>Consultar ficha </button>
                                 </div>
@@ -389,7 +388,7 @@
                         <br>
 
                         <div class="row" style="margin-right: 30px;" >
-                            <div class="col-sm-10 col-md-10 col-lg-10 col-xs-10 formGroup">
+                            <div class="col-sm-12 formGroup">
                                 <div class="form-group">
                                     <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.tribunal) }}</label>
                                 <div class="col-md-8 col-sm-8 col-xs-8">
@@ -398,12 +397,8 @@
                                 </div>
                                 
                             </div>
-                                <div class="col-md-2 col-sm-2 col-xs-2">
 
-                                    <div id="estado_div3" class="estado00"> </div>
-                                </div>
-
-                             <div class="col-sm-10 col-md-10 col-lg-10 col-xs-10 formGroup">
+                             <div class="col-sm-12 formGroup">
                                 <div class="form-group">
                                     <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.caratula) }}</label>
                                 <div class="col-md-8 col-sm-8 col-xs-8">
@@ -411,23 +406,15 @@
                                 </div>
                                 </div>
                             </div>
-                                <div class="col-md-2 col-sm-2 col-xs-2">
-
-                                </div>
                                 
-                                
-                            <div class="col-sm-10 col-md-10 col-lg-10 col-xs-10 formGroup">
+                            <div class="col-sm-12 formGroup">
                                 <div class="form-group">
                                     <label class="col-md-4 col-sm-4 col-xs-4 control-label">{{ form_label(form.causa) }}</label>
                                 <div class="col-md-8 col-sm-8 col-xs-8">
                                 {{ form_widget(form.causa) }}
                                 </div>
                                 </div>
-                            </div>
-                                <div class="col-md-2 col-sm-2 col-xs-2">
-
-                                </div>
-                                
+                            </div>                                
 
                        </div>
 

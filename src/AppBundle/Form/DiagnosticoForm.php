@@ -20,7 +20,7 @@ class DiagnosticoForm extends AbstractType
     
     $builder
         ->add('identificador', 'text', array('label' => 'Código:', 'max_length' => 5))
-        ->add('descripcion', 'text', array('label' => 'Descripción:', 'max_length' => 60))
+        ->add('descripcion', 'text', array('label' => 'Descripción:', 'max_length' => 100))
         ->add('estado', 'entity', array('label' => 'Estado:', 'class' => 'AppBundle:EstadoTabla','choice_label' => 'name'))
         ->add('save', 'submit', array('label' => 'Crear Centro'))
         ;

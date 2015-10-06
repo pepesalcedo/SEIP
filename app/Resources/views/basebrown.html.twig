@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('assets/bootstrap-3.3.5-dist/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('assets/css/simple-sidebar.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/site/css/site.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('assets/font-awesome-4.4.0/css/font-awesome.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap-multiselect-master/dist/css/bootstrap-multiselect.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap-datepicker-1.4.0-dist/css/bootstrap-datepicker.min.css') }}">
+
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+
+
+    {% block superbody %}{% endblock %}
+
+<!-- jQuery -->
+<script src="{{ asset('assets/jquery/jquery-1.11.3.min.js') }}"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="{{ asset('assets/bootstrap-3.3.5-dist/js/bootstrap.min.js') }}"></script>
+
+<script src="{{ asset('assets/bootstrap-multiselect-master/dist/js/bootstrap-multiselect.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/bootstrap-datepicker-1.4.0-dist/js/bootstrap-datepicker.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/bootstrap-datepicker-1.4.0-dist/locales/bootstrap-datepicker.es.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/site/js/script.js') }}"></script>
+{% block javascripts %}{% endblock %}
+
+<!-- Menu Toggle Script -->
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+
+</body>
+
+</html>

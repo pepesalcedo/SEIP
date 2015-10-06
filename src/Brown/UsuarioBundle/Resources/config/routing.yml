@@ -1,0 +1,28 @@
+usuario_homepage:
+    path:     /usuarios_home
+    defaults: { _controller: UsuarioBundle:Default:index }
+login_check:
+    path: /login_check
+login:
+    path: /login
+    defaults: { _controller: UsuarioBundle:Default:login }
+logout:
+    path: /logout
+usuarios_perfil:
+    path: /perfil
+    defaults: { _controller: UsuarioBundle:Default:perfil }
+usuarios_recuperar_password:
+    path: /recuperar-contrasena
+    defaults: { _controller: UsuarioBundle:Default:recuperarPassword }
+usuarios_resetear_password:
+    path: /resetear-contrasena/{codigo}
+    defaults: { _controller: UsuarioBundle:Default:resetPassword }
+usuarios_registro:
+    path: /registro/{dni}
+    defaults: { _controller: UsuarioBundle:Default:registro }
+usuarios_registro_dni:
+    path: /registro
+    defaults: { _controller: UsuarioBundle:Default:registroDni }
+usuarios_confirmar_cuenta:
+    path: /confirmar/{codigo}
+    defaults: { _controller: UsuarioBundle:Default:confirmarCuenta }

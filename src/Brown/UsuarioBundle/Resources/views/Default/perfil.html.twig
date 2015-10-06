@@ -1,0 +1,39 @@
+{% extends '::layout.html.twig' %}
+{% block title 'Perfil' %}
+{% block body %}
+    <h1>Mis Datos</h1>
+    <hr>
+    <div id="myTabs">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Datos Personales</a></li>
+            <li role="presentation"><a href="#password" aria-controls="password" role="tab" data-toggle="tab">Cambio de contraseña</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="profile">
+                <div style="padding: 30px;">
+                {{ form(formulario_datos) }}
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="password">
+                <div style="padding: 30px;">
+                {{ form(formulario) }}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+{% if tab %}
+    <script type="text/javascript">
+        <!--
+    $(document).ready(function(){
+        $('#myTabs a[href="#{{ tab }}"]').tab('show');
+    });
+        -->
+    </script>
+{% endif %}
+{% endblock %}

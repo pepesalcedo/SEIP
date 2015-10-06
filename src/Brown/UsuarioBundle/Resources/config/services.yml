@@ -1,0 +1,33 @@
+services:
+    validator.brown.emailexists:
+        class: Brown\UsuarioBundle\Validator\Constraints\EmailExistsValidator
+        tags:
+            - { name: validator.constraint_validator, alias: brown_validator_email_exists }
+        arguments: ["@doctrine.orm.default_entity_manager"]
+    validator.brown.emailnotexists:
+        class: Brown\UsuarioBundle\Validator\Constraints\EmailNotExistsValidator
+        tags:
+            - { name: validator.constraint_validator, alias: brown_validator_email_not_exists }
+        arguments: ["@doctrine.orm.default_entity_manager"]
+    validator.brown.dninotexists:
+        class: Brown\UsuarioBundle\Validator\Constraints\DniNotExistsValidator
+        tags:
+            - { name: validator.constraint_validator, alias: brown_validator_dni_not_exists }
+        arguments: ["@doctrine.orm.default_entity_manager"]
+    brown.usuario_externo:
+        class: Brown\UsuarioBundle\Util\UsuarioExternoService
+    brown.validator.clave_nueva:
+        class: Brown\UsuarioBundle\Validator\Constraints\ClaveExistenteValidator
+        tags:
+            - { name: validator.constraint_validator, alias: brown_validator_clave_nueva }
+        arguments: ["@doctrine.orm.default_entity_manager","@security.token_storage","@security.encoder_factory"]
+    brown.usuarios.authentication_listener:
+        class: Brown\UsuarioBundle\Services\AuthenticationListener
+        tags:
+            - { name: kernel.event_listener, event: security.authentication.failure, method: onAuthenticationFailure }
+        arguments: ["@service_container","@doctrine.orm.default_entity_manager"]
+    brown.usuarios.interactive_login_listener:
+        class: Brown\UsuarioBundle\Services\AuthenticationListener
+        tags:
+            - { name: kernel.event_listener, event: security.interactive_login, method: onAuthenticationSuccess }
+        arguments: ["@service_container","@doctrine.orm.default_entity_manager"]

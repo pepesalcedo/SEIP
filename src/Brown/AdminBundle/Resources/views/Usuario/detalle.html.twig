@@ -1,0 +1,50 @@
+{% extends '::admin-layout.html.twig' %}
+{% block title usuario %}
+{% block body %}
+    <h1>{{ usuario }}</h1>
+    <hr>
+    <div class="btn-group" role="group" aria-label="...">
+        <a href="{{ path('admin_usuarios_editar', {'id':usuario.id}) }}" class="btn btn-default">Editar</a>
+        <a href="{{ path('admin_usuarios_blanquear_password', {'id':usuario.id}) }}" class="btn btn-default">Blanquear contraseña</a>
+        <a href="{{ path('admin_usuarios_borrar', {'id':usuario.id}) }}" class="btn btn-default">Borrar</a>
+    </div>
+    <hr>
+    <table class="table table-bordered">
+        <tr>
+            <th>Apellido</th>
+            <td>{{ usuario.apellido }}</td>
+            <th>Nombre</th>
+            <td>{{ usuario.nombre }}</td>
+        </tr>
+        <tr>
+            <th>DNI</th>
+            <td>{{ usuario.dni }}</td>
+            <th>E-Mail</th>
+            <td>{{ usuario.email }}</td>
+        </tr>
+        <tr>
+            <th>Calle</th>
+            <td>{{ usuario.calle }}</td>
+            <th>Número</th>
+            <td>{{ usuario.calleNumero }}</td>
+        </tr>
+        {% if usuario.entreCalles %}
+        <tr>
+            <th>Entre calles</th>
+            <th colspan="3">{{ usuario.entreCalles }}</th>
+        </tr>
+        {% endif %}
+        <tr>
+            <th>Piso</th>
+            <td>{{ usuario.piso }}</td>
+            <th>Departamento</th>
+            <td>{{ usuario.departamento }}</td>
+        </tr>
+        <tr>
+            <th>Localidad</th>
+            <td>{{ usuario.localidad.nombre }}</td>
+            <th>Código Postal</th>
+            <td>{{ usuario.codigoPostal }}</td>
+        </tr>
+    </table>
+{% endblock %}

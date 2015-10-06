@@ -21,7 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity
- * @ORM\Table(name="localidad")
+ * @ORM\Table(name="localidadsiep")
  * @UniqueEntity("name")
  */
 class Localidad

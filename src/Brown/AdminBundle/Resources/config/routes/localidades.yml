@@ -1,0 +1,12 @@
+admin_localidades_listado:
+    path: /
+    defaults: { _controller: AdminBundle:Localidad:listado }
+admin_localidades_nuevo:
+    path: /nuevo
+    defaults: { _controller: AdminBundle:Localidad:nuevo }
+admin_localidades_editar:
+    path: /editar/{id}
+    defaults: { _controller: AdminBundle:Localidad:editar }
+admin_localidades_borrar:
+    path: /borrar/{id}
+    defaults: { _controller: AdminBundle:Localidad:borrar }

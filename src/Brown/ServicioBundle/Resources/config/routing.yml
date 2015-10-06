@@ -1,0 +1,3 @@
+servicios_mis_servicios:
+    path: /
+    defaults: { _controller: ServicioBundle:Default:misServicios }

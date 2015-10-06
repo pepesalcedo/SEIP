@@ -1,0 +1,25 @@
+.portal-multiselect {
+    margin-left: 10px !important;
+}
+.admin-menu {
+    border-right: 1px solid rgba(99, 99, 99, 1);
+}
+.sidebar-nav li.active a {
+    background: white;
+    color: black;
+}
+.sidebar-nav li.active a:hover {
+    background: white;
+    color: black;
+}
+.admin-buttons .admin-button {
+    float: left;
+}
+.admin-buttons .admin-button a {
+    color: white;
+    display: block;
+    background: black;
+    font-size: 64px;
+    margin-top: 40px;
+    margin-left: 20px;
+}

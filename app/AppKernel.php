@@ -20,7 +20,14 @@ class AppKernel extends Kernel
             new APY\DataGridBundle\APYDataGridBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\RestBundle\FOSRestBundle(),
-        );
+            new Brown\UsuarioBundle\UsuarioBundle(),
+            new Brown\SiteBundle\SiteBundle(),
+            new Brown\AdminBundle\AdminBundle(),
+            new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
+            new Brown\MunicipioBundle\MunicipioBundle(),
+            new Brown\ServicioBundle\ServicioBundle(),
+
+            );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();

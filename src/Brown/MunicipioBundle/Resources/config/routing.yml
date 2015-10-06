@@ -1,0 +1,3 @@
+municipio_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: MunicipioBundle:Default:index }

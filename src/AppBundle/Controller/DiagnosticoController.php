@@ -47,7 +47,7 @@ class DiagnosticoController extends BasicController {
     {
         $task = new Diagnostico();
         
-        return $this->deleteRecurso($request,$task,  "AppBundle::Diagnostico", $idrecurso);
+        return $this->deleteRecurso($request,$task,  "AppBundle:Diagnostico", $idrecurso);
 
     }
 

@@ -1,0 +1,12 @@
+admin_servicios_nuevo:
+    path:   /nuevo
+    defaults: { _controller: AdminBundle:Servicio:nuevo }
+admin_servicios_listado:
+    path: /
+    defaults: { _controller: AdminBundle:Servicio:listado }
+admin_servicios_editar:
+    path: /editar/{id}
+    defaults: { _controller: AdminBundle:Servicio:editar }
+admin_servicio_borrar:
+    path: /borrar/{id}
+    defaults: { _controller: AdminBundle:Servicio:borrar }

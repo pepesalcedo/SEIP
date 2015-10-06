@@ -198,9 +198,34 @@ public function rellenarFila($objPHPExcel, $servicio, $paciente, $filaServicio)
 
             ->setCellValue($columna++.$filaServicio,  ($paciente->getDiagnostico1())? $paciente->getDiagnostico1()->getDescripcion(): "")
             ->setCellValue($columna++.$filaServicio,  ($paciente->getDiagnostico1())? $paciente->getDiagnostico1()->getIdentificador(): "")
+            ->setCellValue($columna++.$filaServicio,  ($paciente->getDiagnostico2())? $paciente->getDiagnostico2()->getIdentificador(): "")
+            ->setCellValue($columna++.$filaServicio,  ($paciente->getDiagnostico3())? $paciente->getDiagnostico3()->getIdentificador(): "")
+            ->setCellValue($columna++.$filaServicio,  ($paciente->getDiagnostico4())? $paciente->getDiagnostico4()->getIdentificador(): "")
+            ->setCellValue($columna++.$filaServicio,  ($paciente->getDiagnostico5())? $paciente->getDiagnostico5()->getIdentificador(): "")
 
             ;
-     }
+        
+        if ($filaServicio > 3)
+        {
+
+            $arrayInicial = array("A3","B3","C3","D3","E3","F3","G3","H3", "I3", "J3", "K3", "L3", "M3", "N3", "O3");
+
+            
+            for ($i=0; $i<6; $i++)
+            {
+
+                    $arrayFinal = array("A".$filaServicio,"B".$filaServicio,"C".$filaServicio,"D".$filaServicio,"E".$filaServicio,"F".$filaServicio,"G".$filaServicio,
+                                 "H".$filaServicio, "I".$filaServicio, "J".$filaServicio, "K".$filaServicio, "L".$filaServicio, "M".$filaServicio, "N".$filaServicio, "O".$filaServicio);
+
+                    $celda = $columna."3";
+                    $formula = $objPHPExcel->getActiveSheet()->getCell($celda)->getValue();
+                    $newFormula = str_replace($arrayInicial, $arrayFinal, $formula);
+                    $objPHPExcel->setActiveSheetIndex(1)
+                        ->setCellValue($columna++.$filaServicio,  $newFormula);
+
+            }
+        }
+}
          
          
 }

@@ -1,0 +1,68 @@
+{% extends '::basebrown.html.twig' %}
+{% block superbody %}
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav side-nav nav">
+                <li class="sidebar-brand">
+                    <a href="{{ path('site_homepage') }}">
+                        <img src="{{ asset('bundles/site/img/logo.png') }}" alt="Portal Brown">
+                    </a>
+                </li>
+
+                {% if app.user %}
+
+
+                <li>
+                    <a href="{{ path('usuarios_perfil') }}">Perfil</a>
+                </li>
+                <li><a href="{{ path('servicios_mis_servicios') }}">Mis Servicios</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li {{ get_bundle_name() == 'adminbundle' ? 'class="active"' : '' }}>
+                        <a href="{{ path('admin_homepage') }}">Administración</a>
+                    </li>
+                {% endif %}
+                <li>
+                    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                    <a href="{{ path('site_homepage', {'_switch_user': '_exit'}) }}">Salir de esta cuenta</a>
+                    {% else %}
+                    <a href="{{ path('logout') }}" onclick="return confirm('¿Está seguro que desea salir del sistema?');">Salir</a>
+                    {% endif %}
+                </li>
+                {% else %}
+                    <li><a href="{{ path('login') }}">Ingresar</a></li>
+                    <li><a href="{{ path('usuarios_registro_dni') }}">Registrarse</a></li>
+                    <li><a href="{{ path('usuarios_recuperar_password') }}">Recuperar contraseña</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    {% block upperbody %}
+                    <div class="col-lg-12">
+                        {{ wo_render_breadcrumbs() }}
+                        {% for label, flashes in app.session.flashbag.all %}
+                            {% for flash in flashes %}
+                                <div class="alert alert-{{ label }}">
+                                    {{ flash|raw }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        {% block body %}
+                            <h1>Simple Sidebar</h1>
+                            <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
+                            <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
+                            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+                        {% endblock %}
+                    </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+{% endblock %}

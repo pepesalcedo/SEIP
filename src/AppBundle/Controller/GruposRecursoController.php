@@ -94,6 +94,8 @@ class GruposRecursoController extends BasicController {
     public function grupoRecursoAction(Request $request, $idrecurso = 0)
     {
         $task = new GrupoRecurso();
+        $task->setUsuarioAlta ($this->getUser());
+
         $formTemplate = new GrupoRecursoForm();
 
         
@@ -101,12 +103,15 @@ class GruposRecursoController extends BasicController {
 
         $strReturn = $this->editClaseRecurso($request, $idrecurso, "AppBundle:GrupoRecurso", $task, $formTemplate, "recurso/grupoRecurso.html.twig"  );   
     
+        
         if ( $request->isMethod( 'POST' ) ) {
+            if ($task->getEstado() && $task->getEstado()->getId() > 1) {
+                $task->setUsuarioCierre ($this->getUser ());
+            }
             $this->GrabarRecursosAsociados($session, $task->getId());
         }
         else
         {
-
             // le añado a la sesión el objeto para trabajar en memoria
             $personas = $task->getPersonas();
             $c = $personas->count();

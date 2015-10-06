@@ -22,7 +22,7 @@ class CentroAtencionForm extends AbstractType
     
     $builder
         ->add('tipo', 'entity', array('label' => 'Tipo:', 'class' => 'AppBundle:TipoCentroAtencion','choice_label' => 'name'))
-        ->add('nombre', 'text', array('label' => 'Nombre:', 'required' => false, 'max_length' => 15))
+        ->add('nombre', 'text', array('label' => 'Nombre:', 'required' => true, 'max_length' => 50))
         ->add('descripcion', 'text', array('label' => 'Descripción:', 'max_length' => 40))
         ->add('calle', 'text', array('label' => 'Calle:','max_length' => 50))
         ->add('nro', 'text', array('label' => 'Nro:', 'required' => false, 'max_length' => 10))

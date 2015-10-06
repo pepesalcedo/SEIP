@@ -24,7 +24,7 @@ class RecursoPersonaForm extends AbstractType
          ->addEventSubscriber(new AddClaseTipoFieldSubscriber($propertyPathToResource, true))
          ->addEventSubscriber(new AddClaseRecursoFieldSubscriber($propertyPathToResource))
 
-        ->add('dni', 'text', array('label' => 'DNI:', 'max_length' => 10))
+        ->add('dni', 'integer', array('label' => 'DNI:', 'max_length' => 10))
         ->add('nombre', 'text', array('label' => 'Nombre:', 'max_length' => 50))
         ->add('apellido', 'text', array('label' => 'Apellido:', 'max_length' => 50))
         ->add('profesion', 'text', array('label' => 'Profesión:', 'max_length' => 50))

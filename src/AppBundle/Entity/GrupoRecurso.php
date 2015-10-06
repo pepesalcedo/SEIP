@@ -60,14 +60,14 @@ class GrupoRecurso
     protected $fechaFin;
 
     /**
-     * @ORM\Column(type="integer", nullable = true)
-     * @GRID\Column(visible = false)
+     * @ORM\ManyToOne(targetEntity="Brown\UsuarioBundle\Entity\Usuario")
+     * @ORM\JoinColumn(name="usuarioAlta_id", referencedColumnName="id", nullable = true)
      */
     protected $usuarioAlta;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @GRID\Column(visible = false)
+        /**
+     * @ORM\ManyToOne(targetEntity="Brown\UsuarioBundle\Entity\Usuario")
+     * @ORM\JoinColumn(name="usuarioCierre_id", referencedColumnName="id", nullable = true)
      */
     protected $usuarioCierre;
     
@@ -158,7 +158,7 @@ class GrupoRecurso
         $this->personas = $personas;
     }
 
-    
+ 
     /**
      * Get id
      *
@@ -239,52 +239,6 @@ class GrupoRecurso
     }
 
     /**
-     * Set usuarioAlta
-     *
-     * @param integer $usuarioAlta
-     * @return GrupoRecurso
-     */
-    public function setUsuarioAlta($usuarioAlta)
-    {
-        $this->usuarioAlta = $usuarioAlta;
-
-        return $this;
-    }
-
-    /**
-     * Get usuarioAlta
-     *
-     * @return integer 
-     */
-    public function getUsuarioAlta()
-    {
-        return $this->usuarioAlta;
-    }
-
-    /**
-     * Set usuarioCierre
-     *
-     * @param integer $usuarioCierre
-     * @return GrupoRecurso
-     */
-    public function setUsuarioCierre($usuarioCierre)
-    {
-        $this->usuarioCierre = $usuarioCierre;
-
-        return $this;
-    }
-
-    /**
-     * Get usuarioCierre
-     *
-     * @return integer 
-     */
-    public function getUsuarioCierre()
-    {
-        return $this->usuarioCierre;
-    }
-
-    /**
      * Set fechaCierre
      *
      * @param \DateTime $fechaCierre
@@ -328,6 +282,52 @@ class GrupoRecurso
     public function getTipo()
     {
         return $this->tipo;
+    }
+
+    /**
+     * Set usuarioAlta
+     *
+     * @param \Brown\UsuarioBundle\Entity\Usuario $usuarioAlta
+     * @return GrupoRecurso
+     */
+    public function setUsuarioAlta(\Brown\UsuarioBundle\Entity\Usuario $usuarioAlta = null)
+    {
+        $this->usuarioAlta = $usuarioAlta;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioAlta
+     *
+     * @return \Brown\UsuarioBundle\Entity\Usuario 
+     */
+    public function getUsuarioAlta()
+    {
+        return $this->usuarioAlta;
+    }
+
+    /**
+     * Set usuarioCierre
+     *
+     * @param \Brown\UsuarioBundle\Entity\Usuario $usuarioCierre
+     * @return GrupoRecurso
+     */
+    public function setUsuarioCierre(\Brown\UsuarioBundle\Entity\Usuario $usuarioCierre = null)
+    {
+        $this->usuarioCierre = $usuarioCierre;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioCierre
+     *
+     * @return \Brown\UsuarioBundle\Entity\Usuario 
+     */
+    public function getUsuarioCierre()
+    {
+        return $this->usuarioCierre;
     }
 
     /**

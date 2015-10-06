@@ -1,0 +1,12 @@
+admin_servicios_routes:
+    resource: "@AdminBundle/Resources/config/routes/servicios.yml"
+    prefix:   /servicios
+admin_usuarios_routes:
+    resource: "@AdminBundle/Resources/config/routes/usuarios.yml"
+    prefix:   /usuarios
+admin_localidades_routes:
+    resource: "@AdminBundle/Resources/config/routes/localidades.yml"
+    prefix: /localidades
+admin_homepage:
+    path: /
+    defaults: { _controller: AdminBundle:Default:index }

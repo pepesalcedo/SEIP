@@ -20,11 +20,15 @@
                        </div>
                    </div>
                </div>
+                       
                <div class="col-sm-6 col-lg-4 formGroup">
-                    <div id="estado_div2" class="estado00"> </div>
-
-               </div>
-
+                   <div class="form-group">
+                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.dni) }} </label>
+                       <div class="col-md-8 col-sm-8 col-xs-8">
+                           {{ form_widget(form.dni) }}
+                       </div>
+                   </div>
+               </div>                       
                        
                <div class="col-sm-6 col-lg-4 formGroup">
                    <div class="form-group">
@@ -46,17 +50,7 @@
                        </div>
                    </div>
                </div>
-               <div class="col-sm-6 col-lg-4 formGroup">
-               </div>
                        
-               <div class="col-sm-6 col-lg-4 formGroup">
-                   <div class="form-group">
-                       <label class="col-md-4 col-sm-4 col-xs-4 control-label"> {{ form_label(form.dni) }} </label>
-                       <div class="col-md-8 col-sm-8 col-xs-8">
-                           {{ form_widget(form.dni) }}
-                       </div>
-                   </div>
-               </div>
 
                <div class="col-sm-6 col-lg-4 formGroup">
                    <div class="form-group">
@@ -66,10 +60,7 @@
                        </div>
                    </div>
                </div>
-                       
-               <div class="col-sm-6 col-lg-4 formGroup">
-               </div>
-                       
+                                              
                <div class="col-sm-6 col-lg-4 formGroup">
                    <div class="form-group">
                        <label class="col-lg-5 col-md-6 col-sm-6 col-xs-6 control-label"> {{ form_label(form.diagnostico1) }} </label>

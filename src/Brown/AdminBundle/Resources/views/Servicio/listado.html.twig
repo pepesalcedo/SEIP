@@ -1,0 +1,34 @@
+{% extends '::admin-layout.html.twig' %}
+{% block title 'Servicios' %}
+{% block body %}
+    <h1>Listado de servicios</h1>
+    <hr>
+    <a href="{{ path('admin_servicios_nuevo') }}" class="btn btn-success">Nuevo servicio</a>
+    <hr>
+    {% if servicios|length > 0 %}
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for servicio in servicios %}
+            <tr>
+                <td>{{ servicio.nombre }}</td>
+                <td>{{ servicio.descripcion }}</td>
+                <td>{{ servicio.estadoLabel(servicio.estado) }}</td>
+                <td><a href="{{ path('admin_servicios_editar', {'id':servicio.id}) }}" class="btn btn-xs btn-default">Editar</a></td>
+                <td><a href="{{ path('admin_servicio_borrar', {'id':servicio.id}) }}" class="btn btn-xs btn-default">Borrar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <div class="alert alert-info">No hay servicios para mostrar. <a href="{{ path('admin_servicios_nuevo') }}">Haga click aquí para añadir un nuevo servicio</a>.</div>
+    {% endif %}
+{% endblock %}

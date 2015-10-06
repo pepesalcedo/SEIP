@@ -1,0 +1,24 @@
+admin_usuarios_listado:
+    path: /
+    defaults: { _controller: AdminBundle:Usuario:listado }
+admin_usuarios_nuevo:
+    path: /nuevo/{dni}
+    defaults: { _controller: AdminBundle:Usuario:nuevo }
+admin_usuarios_nuevo_dni:
+    path: /nuevo
+    defaults: { _controller: AdminBundle:Usuario:nuevoDni }
+admin_usuarios_editar:
+    path: /editar/{id}
+    defaults: { _controller: AdminBundle:Usuario:editar }
+admin_usuarios_blanquear_password:
+    path: /blanquear-contrasena/{id}
+    defaults: { _controller: AdminBundle:Usuario:blanquearPassword }
+admin_usuarios_borrar:
+    path: /borrar/{id}
+    defaults: { _controller: AdminBundle:Usuario:borrar }
+admin_usuarios_detalle:
+    path: /detalle/{id}
+    defaults: { _controller: AdminBundle:Usuario:detalle }
+admin_usuarios_bloquear:
+    path: /bloquear/{id}
+    defaults: { _controller: AdminBundle:Usuario:bloquear }

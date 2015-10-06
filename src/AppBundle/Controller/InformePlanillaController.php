@@ -278,7 +278,7 @@ public function rellenarFila($objPHPExcel, $numero, $servicio, $paciente, $filaS
         $objPHPExcel->setActiveSheetIndex(0)
              ->setCellValue($columna++.$filaServicio,  $servicio->getTelefono()) 
              ->setCellValue($columna++.$filaServicio,  "¿paramédico?") 
-             ->setCellValue($columna++.$filaServicio,  "¿operador?") 
+             ->setCellValue($columna++.$filaServicio,  ($servicio->getUsuarioAlta())? $servicio->getUsuarioAlta()->getApellido().",".$servicio->getUsuarioAlta()->getNombre():"" ) 
                 ;
         $objPHPExcel->setActiveSheetIndex(0)
              ->setCellValue($columna++.$filaServicio,  $servicio->getCobertura()) 

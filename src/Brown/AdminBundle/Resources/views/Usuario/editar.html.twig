@@ -1,0 +1,11 @@
+{% extends '::admin-layout.html.twig' %}
+{% block title 'Editar usuario' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/admin/usuarios/editar-usuario.js') }}"></script>
+{% endblock %}
+{% block body %}
+    <h1>Editar usuario</h1>
+    <hr>
+    {{ form(formulario) }}
+{% endblock %}

@@ -1,0 +1,7 @@
+services:
+    brown.twig.extension:
+        class: Brown\SiteBundle\Twig\Extension\BrownExtension
+        tags:
+            - { name: twig.extension }
+        calls:
+            - [setRequest, ["@?request="]]

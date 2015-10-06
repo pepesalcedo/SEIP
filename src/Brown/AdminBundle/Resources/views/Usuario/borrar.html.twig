@@ -1,0 +1,15 @@
+{% extends '::admin-layout.html.twig' %}
+{% block body %}
+    <h1>Borrar usuario</h1>
+    <hr>
+    <a href="{{ path('admin_usuarios_listado') }}" class="btn btn-primary">Cancelar y volver</a>
+    <hr>
+    <div class="jumbotron">
+        <h1>¡Atención!</h1>
+        <p>Está a punto de borrar este usuario de manera permanente:</p>
+        <p>{{ usuario }}</p>
+        <p>Si continúa, se borrará la información asociada a este usuario.</p>
+        <p>Para continuar, haga click en el siguiente botón:</p>
+        {{ form(formulario) }}
+    </div>
+{% endblock %}

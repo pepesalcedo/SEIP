@@ -26,7 +26,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity
  * @ORM\Table(name="centroatencion") 
  *  * @UniqueEntity(
- *     fields={"descripcion"},
+ *     fields={"nombre"},
  *     message="Ya existe un centro de atención con la misma descripción"
  * )
  */
@@ -47,10 +47,10 @@ class CentroAtencion extends BasicEntity
     protected $tipo;
 
     /**
-     * @ORM\Column(type="string", length=15, nullable=false)
+     * @ORM\Column(type="string", length=50, nullable=false)
      * @GRID\Column(field="nombre", title="Nombre", operatorsVisible=false)
     * @Assert\Length(
-     *      max = 15,
+     *      max = 50,
      *      maxMessage = "Nombre no puede ser más largo que {{ limit }} caracteres"
      * )
      
@@ -58,7 +58,7 @@ class CentroAtencion extends BasicEntity
     protected $nombre;
     
     /**
-     * @ORM\Column(type="string", length=40, unique=true, nullable=false)
+     * @ORM\Column(type="string", length=40, nullable=false)
      * @GRID\Column(title="Descripción", operatorsVisible=false)
     * @Assert\Length(
      *      max = 40,

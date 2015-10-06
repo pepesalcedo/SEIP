@@ -24,7 +24,8 @@
         "phpoffice/phpexcel": "1.8.1",
         "friendsofsymfony/rest-bundle": "1.7.1",
         "willdurand/negotiation": "* 1.4.0",
-        "beberlei/DoctrineExtensions": "v1.0.5"
+        "beberlei/DoctrineExtensions": "v1.0.5",
+        "whiteoctober/breadcrumbs-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

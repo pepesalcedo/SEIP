@@ -15,7 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="servicio")
+ * @ORM\Table(name="servicioficha")
  * @UniqueEntity("numero")
  * @GRID\Source(columns="id, numero, tipoServicio, fecha, movillogico.descripcion, estado.name ")
  */
@@ -338,6 +338,19 @@ class Servicio {
      * @ORM\OneToMany(targetEntity="ServicioPaciente", mappedBy="servicio")
      */
     protected $pacientes;
+    
+        /**
+     * @ORM\ManyToOne(targetEntity="Brown\UsuarioBundle\Entity\Usuario")
+     * @ORM\JoinColumn(name="usuarioAlta_id", referencedColumnName="id", nullable = true)
+     */
+    protected $usuarioAlta;
+
+        /**
+     * @ORM\ManyToOne(targetEntity="Brown\UsuarioBundle\Entity\Usuario")
+     * @ORM\JoinColumn(name="usuarioCierre_id", referencedColumnName="id", nullable = true)
+     */
+    protected $usuarioCierre;
+    
 
     
     public function __construct()
@@ -420,34 +433,38 @@ class Servicio {
 
         $nuevoNumero = "AA001";
         $max = $query->getQuery()->getResult();
-        if (count($max) > 0)
+        if ($max && count($max) > 0)
         {
             $registro = $max[0];
             $max_numero = $registro['max_numero'];
-            $strNumero = substr($max_numero, 2);
-            $numero = intval($strNumero);
-            $numero ++;
-            //$numero = 1000;
-            if ($numero < 1000)
-            {
-                $nuevoNumero = substr($max_numero, 0, 2) . str_pad(strval($numero), 3, "0", STR_PAD_LEFT);
-            }
-            else 
-            {
-                $letra = $max_numero[1];
-                if ($letra < 'Z')
+            if ($max_numero)
+            {   
+                $strNumero = substr($max_numero, 2);
+                $numero = intval($strNumero);
+                $numero ++;
+                //$numero = 1000;
+                if ($numero < 1000)
                 {
-                    $letra++;
-                    $nuevoNumero = substr($max_numero, 0, 1) . $letra . "001"; 
+                    $nuevoNumero = substr($max_numero, 0, 2) . str_pad(strval($numero), 3, "0", STR_PAD_LEFT);
                 }
-                else
+                else 
                 {
-                    $letra = $max_numero[0];
+                    $letra = $max_numero[1];
                     if ($letra < 'Z')
                     {
-                      $letra++;
-                      $nuevoNumero = $letra . "A001";
+                        $letra++;
+                        $nuevoNumero = substr($max_numero, 0, 1) . $letra . "001"; 
                     }
+                    else
+                    {
+                        $letra = $max_numero[0];
+                        if ($letra < 'Z')
+                        {
+                          $letra++;
+                          $nuevoNumero = $letra . "A001";
+                        }
+                    }
+                
                 }
             }
         }
@@ -1471,4 +1488,52 @@ class Servicio {
         return $this->movillogico;
     }
 
+
+
+
+    /**
+     * Set usuarioAlta
+     *
+     * @param \Brown\UsuarioBundle\Entity\Usuario $usuarioAlta
+     * @return Servicio
+     */
+    public function setUsuarioAlta(\Brown\UsuarioBundle\Entity\Usuario $usuarioAlta = null)
+    {
+        $this->usuarioAlta = $usuarioAlta;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioAlta
+     *
+     * @return \Brown\UsuarioBundle\Entity\Usuario 
+     */
+    public function getUsuarioAlta()
+    {
+        return $this->usuarioAlta;
+    }
+
+    /**
+     * Set usuarioCierre
+     *
+     * @param \Brown\UsuarioBundle\Entity\Usuario $usuarioCierre
+     * @return Servicio
+     */
+    public function setUsuarioCierre(\Brown\UsuarioBundle\Entity\Usuario $usuarioCierre = null)
+    {
+        $this->usuarioCierre = $usuarioCierre;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioCierre
+     *
+     * @return \Brown\UsuarioBundle\Entity\Usuario 
+     */
+    public function getUsuarioCierre()
+    {
+        return $this->usuarioCierre;
+    }
 }

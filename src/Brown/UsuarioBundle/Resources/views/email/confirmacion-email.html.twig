@@ -1,0 +1,8 @@
+{# este email llega al usuario cuando éste se registra y debe hacer click en el enlace de confirmación #}
+{% extends '::email.html.twig' %}
+{% block body %}
+    <h2>Confirmación de cuenta en Portal Brown</h2>
+    <hr>
+    <p>Por favor, confirme su cuenta haciendo click en el siguiente enlace:</p>
+    <p><a href="{{ enlace }}">{{ enlace }}</a></p>
+{% endblock %}

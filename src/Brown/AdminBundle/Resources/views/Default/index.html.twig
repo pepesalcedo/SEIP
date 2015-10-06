@@ -1,0 +1,11 @@
+{% extends '::admin-layout.html.twig' %}
+{% block title 'Administración' %}
+{% block body %}
+    <h1>Administración</h1>
+    <hr>
+    <div class="admin-buttons">
+        <div class="admin-button"><a class="ttp" title="Usuarios" href="{{ path('admin_usuarios_listado') }}"><i class="fa fa-fw fa-user"></i></a></div>
+        <div class="admin-button"><a class="ttp" title="Servicios" href="{{ path('admin_servicios_listado') }}"><i class="fa fa-fw fa-pencil"></i></a></div>
+        <div class="admin-button"><a class="ttp" title="Localidades" href="{{ path('admin_localidades_listado') }}"><i class="fa fa-fw fa-map-marker"></i></a></div>
+    </div>
+{% endblock %}

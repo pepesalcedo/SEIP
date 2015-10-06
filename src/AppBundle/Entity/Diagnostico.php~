@@ -37,10 +37,10 @@ class Diagnostico extends BasicEntity {
     protected $identificador;
 
     /**
-     * @ORM\Column(type="string", length=60, nullable=false)
+     * @ORM\Column(type="string", length=100, nullable=false)
      *  @GRID\Column(title="Descripción", operatorsVisible=false)
      *  @Assert\Length(
-     *      max = 40,
+     *      max = 100,
      *      maxMessage = "Descripción no puede ser más largo que {{ limit }} caracteres"
      * )     */
     protected $descripcion;
