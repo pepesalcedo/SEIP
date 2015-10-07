@@ -1,0 +1,14 @@
+[
+  {
+    "nombre": "Pago de tasas",
+    "url": "http://web2.almirantebrown.gov.ar/tasasmunicipales/",
+    "estado": "ESTADO_HABILITADO",
+    "descripcion": "Consultá tu boleta aquí"
+  },
+  {
+    "nombre": "Licencia de conducir",
+    "url": "http://www.brown.gob.ar/index.php/guia-de-tramites/licencia-de-conductor",
+    "estado": "ESTADO_HABILITADO",
+    "descripcion": "Obtené tu turno online"
+  }
+]

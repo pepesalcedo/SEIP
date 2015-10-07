@@ -94,7 +94,7 @@ class GruposRecursoController extends BasicController {
     public function grupoRecursoAction(Request $request, $idrecurso = 0)
     {
         $task = new GrupoRecurso();
-        $task->setUsuarioAlta ($this->getUser());
+        $task->setUsuarioalta ($this->getUser());
 
         $formTemplate = new GrupoRecursoForm();
 
@@ -105,8 +105,8 @@ class GruposRecursoController extends BasicController {
     
         
         if ( $request->isMethod( 'POST' ) ) {
-            if ($task->getEstado() && $task->getEstado()->getId() > 1) {
-                $task->setUsuarioCierre ($this->getUser ());
+            if ($task->getEstado() && $task->getEstado()->getName() != 'Activa') {
+                $task->setUsuariocierre ($this->getUser ());
             }
             $this->GrabarRecursosAsociados($session, $task->getId());
         }

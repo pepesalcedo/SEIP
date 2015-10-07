@@ -1,0 +1,32 @@
+[
+  {
+    "nombre":"Agustín",
+    "apellido":"Houlgrave",
+    "dni": "33915732",
+    "email": "a.houlgrave@gmail.com",
+    "password": "agustin",
+    "roles": ["ROLE_ADMIN","ROLE_ALLOWED_TO_SWITCH"],
+    "activo": true,
+    "localidad": "Longchamps"
+  },
+  {
+    "nombre":"Pehuén",
+    "apellido":"Romani",
+    "dni":"34888316",
+    "email":"promani7@gmail.com",
+    "password":"pehuen",
+    "roles":["ROLE_ADMIN"],
+    "activo": true,
+    "localidad": "Burzaco"
+  },
+  {
+    "nombre":"Damián",
+    "apellido":"Hernández",
+    "dni":"66666666",
+    "email":"damher@gmail.com",
+    "password":"damian",
+    "roles":["ROLE_USER"],
+    "activo": true,
+    "localidad": "Burzaco"
+  }
+]

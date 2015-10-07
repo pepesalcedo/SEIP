@@ -1,0 +1,6 @@
+[
+  {"nombre":"Administrador", "codigo": "ROLE_ADMIN"},
+  {"nombre":"Imitador", "codigo": "ROLE_ALLOWED_TO_SWITCH"},
+  {"nombre":"Empleado", "codigo": "ROLE_EMPLEADO"},
+  {"nombre":"Usuario", "codigo": "ROLE_USER"}
+]

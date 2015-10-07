@@ -61,7 +61,7 @@ class ServiciosController extends BasicController {
                 $task->calculateNextNumber($repository);
                 
                 // si es nuevo le asigno el usuario
-                $task->setUsuarioAlta($this->getUser());
+                $task->setUsuarioalta($this->getUser());
 
         
 
@@ -87,7 +87,7 @@ class ServiciosController extends BasicController {
           $form->handleRequest( $request );
           
         if ($task->getEstado() && $task->getEstado()->getId() > 1) {
-                $task->setUsuarioCierre ($this->getUser ());
+                $task->setUsuariocierre ($this->getUser ());
             }
 
           return $this->saveData($form);
@@ -113,7 +113,7 @@ class ServiciosController extends BasicController {
     {
         $task = new Servicio();
 
-        return $this->deleteRecurso($request,$task,  "AppBundle::Servicio", $idrecurso);
+        return $this->deleteRecurso($request,$task,  "AppBundle:Servicio", $idrecurso);
     }
     
     /**

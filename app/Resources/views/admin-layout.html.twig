@@ -1,0 +1,30 @@
+{% extends '::layout.html.twig' %}
+{% block upperbody %}
+    <div class="col-md-2 admin-menu">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" {% if get_controller_name() == 'default' %}class="active" {% endif %}><a href="{{ path('admin_homepage') }}">Inicio</a></li>
+            <li role="presentation" {{ get_controller_name() == 'usuario' ? 'class="active"' : '' }}><a href="{{ path('admin_usuarios_listado') }}">Usuarios</a></li>
+            <li role="presentation" {{ get_controller_name() == 'servicio' ? 'class="active"' : '' }}><a href="{{ path('admin_servicios_listado') }}">Servicios</a></li>
+            <li role="presentation" {{ get_controller_name() == 'localidad' ? 'class="active"' : '' }}><a href="{{ path('admin_localidades_listado') }}">Localidades</a></li>
+        </ul>
+    </div>
+    <div class="col-md-10">
+        {{ wo_render_breadcrumbs() }}
+        {% for label, flashes in app.session.flashbag.all %}
+            {% for flash in flashes %}
+                <div class="alert alert-{{ label }}">
+                    {{ flash|raw }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% block body %}{% endblock %}
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/admin/css/admin.css') }}">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/admin/js/admin.js') }}"></script>
+{% endblock %}

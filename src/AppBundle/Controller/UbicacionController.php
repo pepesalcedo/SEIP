@@ -43,7 +43,7 @@ class UbicacionController extends BasicController {
     {
         $task = new Ubicacion();
         
-        return $this->deleteRecurso($request,$task,  "AppBundle::Ubicacion", $idrecurso);
+        return $this->deleteRecurso($request,$task,  "AppBundle:Ubicacion", $idrecurso);
 
     }
 

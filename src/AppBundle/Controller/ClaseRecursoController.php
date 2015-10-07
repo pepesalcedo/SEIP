@@ -50,7 +50,7 @@ class ClaseRecursoController extends BasicController {
     {
         $task = new ClaseRecurso();
         
-        return $this->deleteRecurso($request,$task,  "AppBundle::ClaseRecurso", $idrecurso);
+        return $this->deleteRecurso($request,$task,  "AppBundle:ClaseRecurso", $idrecurso);
 
     }
 

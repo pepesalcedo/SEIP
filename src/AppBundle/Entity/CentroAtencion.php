@@ -27,7 +27,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="centroatencion") 
  *  * @UniqueEntity(
  *     fields={"nombre"},
- *     message="Ya existe un centro de atención con la misma descripción"
+ *     message="Ya existe un centro de atención con el mismo nombre"
  * )
  */
 class CentroAtencion extends BasicEntity

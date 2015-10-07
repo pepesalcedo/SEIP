@@ -341,15 +341,15 @@ class Servicio {
     
         /**
      * @ORM\ManyToOne(targetEntity="Brown\UsuarioBundle\Entity\Usuario")
-     * @ORM\JoinColumn(name="usuarioAlta_id", referencedColumnName="id", nullable = true)
+     * @ORM\JoinColumn(name="usuarioalta2_id", referencedColumnName="id", nullable = true)
      */
-    protected $usuarioAlta;
+    protected $usuarioalta;
 
         /**
      * @ORM\ManyToOne(targetEntity="Brown\UsuarioBundle\Entity\Usuario")
-     * @ORM\JoinColumn(name="usuarioCierre_id", referencedColumnName="id", nullable = true)
+     * @ORM\JoinColumn(name="usuariocierre2_id", referencedColumnName="id", nullable = true)
      */
-    protected $usuarioCierre;
+    protected $usuariocierre;
     
 
     
@@ -1489,51 +1489,49 @@ class Servicio {
     }
 
 
-
-
     /**
-     * Set usuarioAlta
+     * Set usuarioalta
      *
-     * @param \Brown\UsuarioBundle\Entity\Usuario $usuarioAlta
+     * @param \Brown\UsuarioBundle\Entity\Usuario $usuarioalta
      * @return Servicio
      */
-    public function setUsuarioAlta(\Brown\UsuarioBundle\Entity\Usuario $usuarioAlta = null)
+    public function setUsuarioalta(\Brown\UsuarioBundle\Entity\Usuario $usuarioalta = null)
     {
-        $this->usuarioAlta = $usuarioAlta;
+        $this->usuarioalta = $usuarioalta;
 
         return $this;
     }
 
     /**
-     * Get usuarioAlta
+     * Get usuarioalta
      *
      * @return \Brown\UsuarioBundle\Entity\Usuario 
      */
-    public function getUsuarioAlta()
+    public function getUsuarioalta()
     {
-        return $this->usuarioAlta;
+        return $this->usuarioalta;
     }
 
     /**
-     * Set usuarioCierre
+     * Set usuariocierre
      *
-     * @param \Brown\UsuarioBundle\Entity\Usuario $usuarioCierre
+     * @param \Brown\UsuarioBundle\Entity\Usuario $usuariocierre
      * @return Servicio
      */
-    public function setUsuarioCierre(\Brown\UsuarioBundle\Entity\Usuario $usuarioCierre = null)
+    public function setUsuariocierre(\Brown\UsuarioBundle\Entity\Usuario $usuariocierre = null)
     {
-        $this->usuarioCierre = $usuarioCierre;
+        $this->usuariocierre = $usuariocierre;
 
         return $this;
     }
 
     /**
-     * Get usuarioCierre
+     * Get usuariocierre
      *
      * @return \Brown\UsuarioBundle\Entity\Usuario 
      */
-    public function getUsuarioCierre()
+    public function getUsuariocierre()
     {
-        return $this->usuarioCierre;
+        return $this->usuariocierre;
     }
 }

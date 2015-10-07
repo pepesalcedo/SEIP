@@ -1,0 +1,14 @@
+[
+	{
+		'id' : 1,
+		'name' : "Activa"
+	},
+	{
+		'id' : 3,
+		'name' : "Anulada"
+	},
+	{
+		'id' : 2,
+		'name' : "Cerrada"
+	}
+]

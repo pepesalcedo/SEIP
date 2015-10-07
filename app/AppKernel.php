@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(),
             new Brown\MunicipioBundle\MunicipioBundle(),
             new Brown\ServicioBundle\ServicioBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
 
             );
 
